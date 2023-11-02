@@ -11,4 +11,9 @@ class RootController extends Controller
     {
         return view('root.dashboard');
     }
+
+    public function login()
+    {
+        return view('root.auth.login');
+    }
 }
