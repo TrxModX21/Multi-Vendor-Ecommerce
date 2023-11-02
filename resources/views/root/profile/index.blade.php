@@ -39,14 +39,14 @@
                                     <div class="form-group col-md-6 col-12">
                                         <label>Name</label>
                                         <input type="text" class="form-control" name="name"
-                                            value="{{ Auth::user()->name }}" required="">
+                                            value="{{ Auth::user()->name }}" required>
                                     </div>
 
                                     {{-- Profile Email --}}
                                     <div class="form-group col-md-6 col-12">
                                         <label>Email</label>
                                         <input type="email" name="email" class="form-control"
-                                            value="{{ Auth::user()->email }}" required="">
+                                            value="{{ Auth::user()->email }}" required>
                                     </div>
                                 </div>
                             </div>
@@ -60,11 +60,6 @@
                 {{-- Password Card --}}
                 <div class="col-12 col-md-12 col-lg-7">
                     <div class="card">
-                        @if ($errors->any())
-                            @foreach ($errors->all() as $error)
-                                <span class="alert alert-danger">{{ $error }}</span>
-                            @endforeach
-                        @endif
                         <form method="POST" class="needs-validation" action="{{ route('root.password.update') }}"
                             novalidate="">
                             @csrf
@@ -78,19 +73,19 @@
                                     {{-- Profile Current Password --}}
                                     <div class="form-group col-12">
                                         <label>Current Password</label>
-                                        <input type="password" class="form-control" name="current_password">
+                                        <input type="password" class="form-control" name="current_password" required>
                                     </div>
 
                                     {{-- Profile New Password --}}
                                     <div class="form-group col-md-6 col-12">
                                         <label>New Password</label>
-                                        <input type="password" class="form-control" name="password">
+                                        <input type="password" class="form-control" name="password" required>
                                     </div>
 
                                     {{-- Profile Confirm Password --}}
                                     <div class="form-group col-md-6 col-12">
                                         <label>Confirm Password</label>
-                                        <input type="password" class="form-control" name="password_confirmation">
+                                        <input type="password" class="form-control" name="password_confirmation" required>
                                     </div>
 
                                 </div>
