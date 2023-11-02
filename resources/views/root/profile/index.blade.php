@@ -12,6 +12,8 @@
         <div class="section-body">
 
             <div class="row mt-sm-4">
+
+                {{-- Profile Card --}}
                 <div class="col-12 col-md-12 col-lg-7">
                     <div class="card">
                         <form method="POST" class="needs-validation" action="{{ route('root.profile.update') }}"
@@ -46,6 +48,51 @@
                                         <input type="email" name="email" class="form-control"
                                             value="{{ Auth::user()->email }}" required="">
                                     </div>
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <button class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                {{-- Password Card --}}
+                <div class="col-12 col-md-12 col-lg-7">
+                    <div class="card">
+                        @if ($errors->any())
+                            @foreach ($errors->all() as $error)
+                                <span class="alert alert-danger">{{ $error }}</span>
+                            @endforeach
+                        @endif
+                        <form method="POST" class="needs-validation" action="{{ route('root.password.update') }}"
+                            novalidate="">
+                            @csrf
+
+                            <div class="card-header">
+                                <h4>Update Password</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+
+                                    {{-- Profile Current Password --}}
+                                    <div class="form-group col-12">
+                                        <label>Current Password</label>
+                                        <input type="password" class="form-control" name="current_password">
+                                    </div>
+
+                                    {{-- Profile New Password --}}
+                                    <div class="form-group col-md-6 col-12">
+                                        <label>New Password</label>
+                                        <input type="password" class="form-control" name="password">
+                                    </div>
+
+                                    {{-- Profile Confirm Password --}}
+                                    <div class="form-group col-md-6 col-12">
+                                        <label>Confirm Password</label>
+                                        <input type="password" class="form-control" name="password_confirmation">
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="card-footer text-right">
