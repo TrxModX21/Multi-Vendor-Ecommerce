@@ -41,4 +41,7 @@ Route::group([
 
     Route::get('/profile', [UserProfileController::class, 'index'])
         ->name('profile');
+
+    Route::put('/profile', [UserProfileController::class, 'updateProfile'])
+        ->name('profile.update');
 });
