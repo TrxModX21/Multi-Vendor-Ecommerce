@@ -20,7 +20,7 @@ class SliderController extends Controller
      */
     public function create()
     {
-        //
+        return view('root.slider.create');
     }
 
     /**
