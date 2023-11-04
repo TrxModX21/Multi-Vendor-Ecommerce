@@ -49,34 +49,44 @@
                                     </div>
 
                                     <div class="col-xl-12">
-                                        <button class="common_btn mb-4 mt-2" type="submit">upload</button>
+                                        <button class="common_btn mb-4 mt-2" type="submit">update</button>
                                     </div>
                                 </form>
 
                                 <div class="wsus__dash_pass_change mt-2">
-                                    <div class="row">
-                                        <div class="col-xl-4 col-md-6">
-                                            <div class="wsus__dash_pro_single">
-                                                <i class="fas fa-unlock-alt"></i>
-                                                <input type="password" placeholder="Current Password">
+                                    <form action="{{ route('user.profile.update.password') }}" method="POST">
+                                        @csrf
+
+                                        <div class="row">
+                                            <h4>update password</h4>
+
+                                            <div class="col-xl-4 col-md-6">
+                                                <div class="wsus__dash_pro_single">
+                                                    <i class="fas fa-unlock-alt"></i>
+                                                    <input type="password" id="current_password" name="current_password"
+                                                        placeholder="Current Password" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-md-6">
+                                                <div class="wsus__dash_pro_single">
+                                                    <i class="fas fa-lock-alt"></i>
+                                                    <input type="password" id="password" name="password"
+                                                        placeholder="New Password" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4">
+                                                <div class="wsus__dash_pro_single">
+                                                    <i class="fas fa-lock-alt"></i>
+                                                    <input type="password" id="password_confirmation"
+                                                        name="password_confirmation" placeholder="Confirm Password"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12">
+                                                <button class="common_btn" type="submit">update</button>
                                             </div>
                                         </div>
-                                        <div class="col-xl-4 col-md-6">
-                                            <div class="wsus__dash_pro_single">
-                                                <i class="fas fa-lock-alt"></i>
-                                                <input type="password" placeholder="New Password">
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-4">
-                                            <div class="wsus__dash_pro_single">
-                                                <i class="fas fa-lock-alt"></i>
-                                                <input type="password" placeholder="Confirm Password">
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-12">
-                                            <button class="common_btn" type="submit">upload</button>
-                                        </div>
-                                    </div>
+                                    </form>
                                 </div>
 
 
