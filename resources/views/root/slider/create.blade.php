@@ -20,45 +20,50 @@
                         </div>
                         <div class="card-body">
 
-                            <form action="">
+                            <form action="{{ route('root.slider.store') }}" method="POST" enctype="multipart/form-data">
 
                                 @csrf
 
                                 <div class="form-group">
-                                    <label for="">Banner</label>
-                                    <input type="file" name="" id="" class="form-control" />
+                                    <label for="banner">Banner</label>
+                                    <input type="file" name="banner" id="banner" class="form-control" />
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="">Type</label>
-                                    <input type="text" name="" id="" class="form-control" />
+                                    <label for="type">Type</label>
+                                    <input type="text" name="type" id="type" class="form-control"
+                                        value="{{ old('type') }}" />
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="">Title</label>
-                                    <input type="text" name="" id="" class="form-control" />
+                                    <label for="title">Title</label>
+                                    <input type="text" name="title" id="title" class="form-control"
+                                        value="{{ old('title') }}" />
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="">Starting Price</label>
-                                    <input type="text" name="" id="" class="form-control" />
+                                    <label for="starting_price">Starting Price</label>
+                                    <input type="text" name="starting_price" id="starting_price" class="form-control"
+                                        value="{{ old('starting_price') }}" />
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="">Button URL</label>
-                                    <input type="text" name="" id="" class="form-control" />
+                                    <label for="btn_url">Button URL</label>
+                                    <input type="text" name="btn_url" id="btn_url" class="form-control"
+                                        value="{{ old('btn_url') }}" />
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="">Serial</label>
-                                    <input type="text" name="" id="" class="form-control" />
+                                    <label for="serial">Serial</label>
+                                    <input type="text" name="serial" id="serial" class="form-control"
+                                        value="{{ old('serial') }}" />
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="">Status</label>
-                                    <select name="" id="" class="form-control">
-                                        <option value="">Active</option>
-                                        <option value="">Inactive</option>
+                                    <label for="status">Status</label>
+                                    <select name="status" id="status" class="form-control">
+                                        <option value="1">Active</option>
+                                        <option value="0">Inactive</option>
                                     </select>
                                 </div>
 
