@@ -19,6 +19,7 @@
                     <span>Manage Categories</span></a>
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{ route('root.category.index') }}">Category</a></li>
+                    <li><a class="nav-link" href="{{ route('root.sub-category.index') }}">Sub Category</a></li>
                 </ul>
             </li>
 
