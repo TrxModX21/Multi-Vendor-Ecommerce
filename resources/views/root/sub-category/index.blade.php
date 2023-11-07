@@ -3,9 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-
             <h1>Sub Category</h1>
-
         </div>
 
         <div class="section-body">
@@ -41,7 +39,7 @@
                 let id = $(this).data('id');
 
                 $.ajax({
-                    url: "{{ route('root.category.change-status') }}",
+                    url: "{{ route('root.sub-category.change-status') }}",
                     method: 'PUT',
                     data: {
                         status: isChecked,
