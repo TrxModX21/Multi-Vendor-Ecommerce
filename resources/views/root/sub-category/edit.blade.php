@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Category</h1>
+            <h1>Sub Category</h1>
         </div>
 
         <div class="section-body">
@@ -11,35 +11,38 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Edit Categories</h4>
+                            <h4>Update Sub Category</h4>
                         </div>
-
                         <div class="card-body">
-                            <form action="{{ route('root.category.update', $category->id) }}" method="POST">
+                            <form action="{{ route('root.sub-category.update', $subCategory->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
 
                                 <div class="form-group">
-                                    <label for="icon">Icon</label>
-                                    <div>
-                                        <button name='icon' id="icon" class="btn btn-primary"
-                                            data-icon="{{ $category->icon }}" data-selected-class="btn-danger"
-                                            data-unselected-class="btn-info" role="iconpicker"></button>
-                                    </div>
+                                    <label for="category">Category</label>
+                                    <select name="category" id="category" class="form-control">
+                                        <option value=""><---Select---></option>
+
+                                        @foreach ($categories as $category)
+                                            <option {{ $category->id == $subCategory->category_id ? 'selected' : '' }}
+                                                value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+
+                                    </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="name">Name</label>
                                     <input type="text" name="name" id="name" class="form-control"
-                                        value="{{ $category->name }}" />
+                                        value="{{ $subCategory->name }}" />
                                 </div>
 
                                 <div class="form-group">
                                     <label for="status">Status</label>
                                     <select name="status" id="status" class="form-control">
-                                        <option {{ $category->status == 1 ? 'selected' : '' }} value="1">Active
+                                        <option {{ $subCategory->status == 1 ? 'selected' : '' }} value="1">Active
                                         </option>
-                                        <option {{ $category->status == 0 ? 'selected' : '' }} value="0">Inactive
+                                        <option {{ $subCategory->status == 0 ? 'selected' : '' }} value="0">Inactive
                                         </option>
                                     </select>
                                 </div>
