@@ -14,14 +14,15 @@
                             <h4>Create Categories</h4>
                         </div>
                         <div class="card-body">
-                            <form action="" method="POST">
+                            <form action="{{ route('root.category.store') }}" method="POST">
                                 @csrf
 
                                 <div class="form-group">
                                     <label for="icon">Icon</label>
                                     <div>
-                                        <button class="btn btn-primary" data-selected-class="btn-danger"
-                                            data-unselected-class="btn-info" role="iconpicker"></button>
+                                        <button name='icon' id="icon" class="btn btn-primary"
+                                            data-selected-class="btn-danger" data-unselected-class="btn-info"
+                                            role="iconpicker"></button>
                                     </div>
                                 </div>
 
