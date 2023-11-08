@@ -14,7 +14,7 @@
                             <h4>Create Child Category</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('root.sub-category.store') }}" method="POST">
+                            <form action="{{ route('root.child-category.store') }}" method="POST">
                                 @csrf
 
                                 <div class="form-group">
@@ -30,8 +30,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="category">Sub Category</label>
-                                    <select name="category" id="category" class="form-control sub-category">
+                                    <label for="sub_category">Sub Category</label>
+                                    <select name="sub_category" id="sub_category" class="form-control sub-category">
                                         <option value=""><---Select---></option>
 
                                     </select>
