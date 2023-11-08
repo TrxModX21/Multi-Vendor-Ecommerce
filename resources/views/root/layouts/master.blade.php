@@ -131,20 +131,22 @@
                             success: function(data) {
 
                                 if (data.status == 'success') {
-                                    Swal.fire(
-                                        'Deleted!',
-                                        data.message,
-                                        'success'
-                                    );
-
-                                    setTimeout(() => {
-                                        window.location.reload();
-                                    }, 1500);
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Deleted Success!',
+                                        text: data.message,
+                                        confirmButtonText: "OK",
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.reload();
+                                        }
+                                    });
                                 } else if (data.status == 'error') {
-                                    Swal.fire(
-                                        'Failed Deleted',
-                                        data.message,
-                                    );
+                                    Swal.fire({
+                                        icon: "error",
+                                        title: "Oops...",
+                                        text: data.message,
+                                    });
                                 }
 
                             },

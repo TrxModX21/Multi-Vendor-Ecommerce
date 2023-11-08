@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\DataTables\SubCategoryDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\ChildCategory;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Str;
@@ -103,6 +104,16 @@ class SubCategoryController extends Controller
     {
         $subCategory = SubCategory::findOrFail($id);
 
+        $childCategory = ChildCategory::where('sub_category_id', $subCategory->id)
+            ->count();
+
+        if ($childCategory > 0) {
+            return response([
+                'status' => 'error',
+                'message' => 'This items contains child items. For delete this you have to delete the child items first!'
+            ]);
+        }
+
         $subCategory->delete();
 
         return response([
@@ -111,7 +122,8 @@ class SubCategoryController extends Controller
         ]);
     }
 
-    public function changeStatus(Request $request){
+    public function changeStatus(Request $request)
+    {
         $subCategory = SubCategory::findOrFail($request->id);
 
         $subCategory->status = $request->status == 'true' ? 1 : 0;
