@@ -120,8 +120,17 @@ class ChildCategoryController extends Controller
         ]);
     }
 
-    public function changeStatus()
+    public function changeStatus(Request $request)
     {
+        $childCategory = ChildCategory::findOrFail($request->id);
+
+        $childCategory->status = $request->status == 'true' ? 1 : 0;
+
+        $childCategory->save();
+
+        return response([
+            'message' => 'Status has been updated'
+        ]);
     }
 
     public function getSubCategories(Request $request)
