@@ -16,8 +16,10 @@
                         <div class="card-header">
                             <h4>All Brands</h4>
                             <div class="card-header-action">
-                                <a href="{{ route('root.category.create') }}" class="btn btn-primary"><i
-                                        class="fas fa-plus"></i> Create New</a>
+                                <a href="{{ route('root.brand.create') }}" class="btn btn-primary">
+                                    <i class="fas fa-plus"></i>
+                                    Create New
+                                </a>
                             </div>
                         </div>
                         <div class="card-body">
