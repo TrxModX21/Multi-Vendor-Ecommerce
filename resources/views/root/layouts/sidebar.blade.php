@@ -45,6 +45,9 @@
                     <li class="{{ setActive(['root.brand.*']) }}">
                         <a class="nav-link" href="{{ route('root.brand.index') }}">Brands</a>
                     </li>
+                    <li class="{{ setActive(['root.brand.*']) }}">
+                        <a class="nav-link" href="{{ route('root.brand.index') }}">Products</a>
+                    </li>
                 </ul>
             </li>
             {{-- MANAGE PRODUCTS END --}}
