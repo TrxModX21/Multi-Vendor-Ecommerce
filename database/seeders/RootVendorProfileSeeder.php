@@ -14,12 +14,12 @@ class RootVendorProfileSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::where('email', 'vendor21@gmail.com')->first();
+        $user = User::where('email', 'trxcode21@gmail.com')->first();
         $vendor = new Vendor();
 
         $vendor->banner = 'uploads/123.jpg';
         $vendor->phone = '123132321';
-        $vendor->email = 'firstshop21@gmail.com';
+        $vendor->email = 'trxcode21@gmail.com';
         $vendor->address = 'IND';
         $vendor->description = 'First Shop Description';
         $vendor->user_id = $user->id;
