@@ -22,8 +22,8 @@
                                 @csrf
 
                                 <div class="form-group">
-                                    <label for="image">Image</label>
-                                    <input type="file" name="image" id="image" class="form-control" />
+                                    <label for="thumb_image">Thumb Image</label>
+                                    <input type="file" name="thumb_image" id="thumb_image" class="form-control" />
                                 </div>
 
                                 <div class="form-group">
@@ -36,8 +36,8 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="category">Category</label>
-                                            <select name="category" id="category" class="form-control main-category">
+                                            <label for="category_id">Category</label>
+                                            <select name="category_id" id="category_id" class="form-control main-category">
                                                 <option value=""><---Select---></option>
 
                                                 @foreach ($categories as $category)
@@ -49,8 +49,9 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="sub_category">Sub Category</label>
-                                            <select name="sub_category" id="sub_category" class="form-control sub-category">
+                                            <label for="sub_category_id">Sub Category</label>
+                                            <select name="sub_category_id" id="sub_category_id"
+                                                class="form-control sub-category">
                                                 <option value=""><---Select---></option>
 
                                             </select>
@@ -59,8 +60,8 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="child_category">Child Category</label>
-                                            <select name="child_category" id="child_category"
+                                            <label for="child_category_id">Child Category</label>
+                                            <select name="child_category_id" id="child_category_id"
                                                 class="form-control child-category">
                                                 <option value=""><---Select---></option>
 
@@ -70,8 +71,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="brand">Brand</label>
-                                    <select name="brand" id="brand" class="form-control child-category">
+                                    <label for="brand_id">Brand</label>
+                                    <select name="brand_id" id="brand_id" class="form-control">
                                         <option value=""><---Select---></option>
                                         @foreach ($brands as $brand)
                                             <option value="{{ $brand->id }}">{{ $brand->name }}</option>
