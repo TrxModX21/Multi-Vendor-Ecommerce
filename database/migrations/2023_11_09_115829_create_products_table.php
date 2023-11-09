@@ -17,8 +17,8 @@ return new class extends Migration {
             $table->text('thumb_image');
             $table->integer('vendor_id');
             $table->integer('category_id');
-            $table->integer('sub_category_id');
-            $table->integer('child_category_id');
+            $table->integer('sub_category_id')->nullable();
+            $table->integer('child_category_id')->nullable();
             $table->integer('brand_id');
             $table->integer('qty');
             $table->text('short_description');
@@ -29,9 +29,7 @@ return new class extends Migration {
             $table->double('offer_price')->nullable();
             $table->date('offer_start_date')->nullable();
             $table->date('offer_end_date')->nullable();
-            $table->boolean('is_top')->nullable();
-            $table->boolean('is_best')->nullable();
-            $table->boolean('is_featured')->nullable();
+            $table->string('product_type')->nullable();
             $table->boolean('status')->default(1);
             $table->integer('is_approved')->default(0);
             $table->string('seo_title')->nullable();

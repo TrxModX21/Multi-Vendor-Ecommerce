@@ -140,41 +140,16 @@
                                     <textarea name="long_description" id="long_description" class="form-control summernote">{{ old('long_description') }}</textarea>
                                 </div>
 
-                                <div class="row">
+                                <div class="form-group">
+                                    <label for="product_type">Product Type</label>
+                                    <select name="product_type" id="product_type" class="form-control">
+                                        <option value="0"><---Select---></option>
 
-                                    <div class="col-md 4">
-                                        <div class="form-group">
-                                            <label for="is_top">Is Top</label>
-                                            <select name="is_top" id="is_top" class="form-control">
-                                                <option value=""><---Select---></option>
-                                                <option value="1">YES</option>
-                                                <option value="0">NO</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md 4">
-                                        <div class="form-group">
-                                            <label for="is_best">Is Best</label>
-                                            <select name="is_best" id="is_best" class="form-control">
-                                                <option value=""><---Select---></option>
-                                                <option value="1">YES</option>
-                                                <option value="0">NO</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md 4">
-                                        <div class="form-group">
-                                            <label for="is_featured">Is Featured</label>
-                                            <select name="is_featured" id="is_featured" class="form-control">
-                                                <option value=""><---Select---></option>
-                                                <option value="1">YES</option>
-                                                <option value="0">NO</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
+                                        <option value="new_arrival">New Arrival</option>
+                                        <option value="featured_product">Featured</option>
+                                        <option value="top_product">Top Product</option>
+                                        <option value="best_product">Best Product</option>
+                                    </select>
                                 </div>
 
                                 <div class="form-group">
