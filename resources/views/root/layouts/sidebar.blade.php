@@ -36,7 +36,7 @@
             {{-- MANAGE CATEGORIES END --}}
 
             {{-- MANAGE PRODUCTS START --}}
-            <li class="dropdown {{ setActive(['root.brand.*']) }}">
+            <li class="dropdown {{ setActive(['root.brand.*', 'root.products.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                     <i class="fas fa-columns"></i>
                     <span>Manage Products</span>
@@ -45,8 +45,8 @@
                     <li class="{{ setActive(['root.brand.*']) }}">
                         <a class="nav-link" href="{{ route('root.brand.index') }}">Brands</a>
                     </li>
-                    <li class="{{ setActive(['root.brand.*']) }}">
-                        <a class="nav-link" href="{{ route('root.brand.index') }}">Products</a>
+                    <li class="{{ setActive(['root.products.*']) }}">
+                        <a class="nav-link" href="{{ route('root.products.index') }}">Products</a>
                     </li>
                 </ul>
             </li>
