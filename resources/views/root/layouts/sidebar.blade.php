@@ -49,6 +49,20 @@
             </li>
             {{-- MANAGE PRODUCTS END --}}
 
+            {{-- MANAGE ECOMERCE START --}}
+            <li class="dropdown {{ setActive(['root.vendor-profile.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fas fa-columns"></i>
+                    <span>E-Comerce</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="{{ setActive(['root.vendor-profile.*']) }}">
+                        <a class="nav-link" href="{{ route('root.vendor-profile.index') }}">Vendor Profile</a>
+                    </li>
+                </ul>
+            </li>
+            {{-- MANAGE WEBSITE END --}}
+
             {{-- MANAGE WEBSITE START --}}
             <li class="dropdown {{ setActive(['root.slider.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
