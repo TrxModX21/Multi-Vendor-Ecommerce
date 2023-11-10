@@ -103,7 +103,13 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $categories = Category::all();
+        $subCategories = SubCategory::where('category_id', $product->category_id)->get();
+        $childCategories = ChildCategory::where('sub_category_id', $product->sub_category_id)->get();
+        $brands = Brand::all();
+
+        return view('root.product.edit', compact('product', 'categories', 'brands', 'subCategories', 'childCategories'));
     }
 
     /**
