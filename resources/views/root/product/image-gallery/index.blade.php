@@ -4,7 +4,7 @@
     <section class="section">
         <div class="section-header">
 
-            <h1>Product Image Gallery</h1>
+            <h1>{{ $product->name }} Gallery</h1>
 
         </div>
 
@@ -18,14 +18,19 @@
                         </div>
 
                         <div class="card-body">
-                            <form action="" enctype="multipart/form-data" method="POST">
+                            <form action="{{ route('root.products-image-gallery.store') }}" enctype="multipart/form-data"
+                                method="POST">
+                                @csrf
+
                                 <div class="form-group">
-                                    <label for="image">
+                                    <label for="images">
                                         Image
                                         <code>(multiple image supported)</code>
                                     </label>
-                                    <input type="file" name="image" id="image" class="form-control">
+                                    <input type="file" name="images[]" id="images" class="form-control" multiple>
+                                    <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}">
                                 </div>
+
                                 <button type="submit" class="btn btn-primary">Upload</button>
                             </form>
                         </div>
@@ -37,7 +42,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>All Product Images</h4>
+                            <h4>All Images</h4>
                         </div>
                         <div class="card-body">
                             {{ $dataTable->table() }}
