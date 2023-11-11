@@ -74,3 +74,7 @@ Route::get('products-variant-item/create/{productId}/{variantId}', [ProductVaria
     ->name('products-variant-item.create');
 Route::post('products-variant-item', [ProductVariantItemController::class, 'store'])
     ->name('products-variant-item.store');
+Route::get('products-variant-item/{id}/edit', [ProductVariantItemController::class, 'edit'])
+    ->name('products-variant-item.edit');
+Route::delete('products-variant-item/{id}', [ProductVariantItemController::class, 'destroy'])
+    ->name('products-variant-item.destroy');

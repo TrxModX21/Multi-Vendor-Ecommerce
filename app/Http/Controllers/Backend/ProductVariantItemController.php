@@ -51,4 +51,14 @@ class ProductVariantItemController extends Controller
 
         return redirect()->route('root.products-variant-item.index', [$request->product_id, $request->variant_id]);
     }
+
+    public function edit(string $id)
+    {
+        return '<h1>oke</h1>';
+    }
+
+    public function destroy(string $id)
+    {
+        dd($id);
+    }
 }
