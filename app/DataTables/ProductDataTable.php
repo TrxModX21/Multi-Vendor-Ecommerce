@@ -36,9 +36,9 @@ class ProductDataTable extends DataTable
                                 <i class='fas fa-heart'></i>
                                 Image Gallery                    
                             </a>
-                            <a class='dropdown-item has-icon' href='#'>
+                            <a class='dropdown-item has-icon' href='" . route('root.products-variant.index') . "'>
                                 <i class='fas fa-file'></i>
-                                Another Action                    
+                                Variants                    
                             </a>
                             <a class='dropdown-item has-icon' href='#'>
                                 <i class='fas fa-clock'></i>                    

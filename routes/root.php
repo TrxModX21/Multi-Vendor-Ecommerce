@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProductImageGalleryController;
+use App\Http\Controllers\Backend\ProductVariantController;
 use App\Http\Controllers\Backend\RootVendorProfileController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
@@ -58,8 +59,7 @@ Route::get('products/get-childcategories', [ProductController::class, 'getChildC
 Route::resource('products', ProductController::class);
 
 /** PRODUCTS IMAGE GALLERY ROUTES */
-// Route::get('products/get-subcategories', [ProductController::class, 'getSubCategories'])
-//     ->name('products.get-subcategories');
-// Route::get('products/get-childcategories', [ProductController::class, 'getChildCategories'])
-//     ->name('products.get-childcategories');
 Route::resource('products-image-gallery', ProductImageGalleryController::class);
+
+/** PRODUCTS VARIANT ROUTES */
+Route::resource('products-variant', ProductVariantController::class);

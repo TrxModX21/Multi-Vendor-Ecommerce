@@ -3,9 +3,11 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-
             <h1>{{ $product->name }} Gallery</h1>
+        </div>
 
+        <div class="mb-3">
+            <a href="{{ route('root.products.index') }}" class="btn btn-primary">Back</a>
         </div>
 
         <div class="section-body">
