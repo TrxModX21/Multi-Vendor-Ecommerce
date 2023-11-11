@@ -52,13 +52,41 @@ class ProductVariantItemController extends Controller
         return redirect()->route('root.products-variant-item.index', [$request->product_id, $request->variant_id]);
     }
 
-    public function edit(string $id)
+    public function edit(string $variantItemId)
     {
-        return '<h1>oke</h1>';
+        $variantItem = ProductVariantItem::findOrFail($variantItemId);
+
+        return view('root.product.variant-item.edit', compact('variantItem'));
     }
 
-    public function destroy(string $id)
+    public function update(Request $request, string $variantItemId)
     {
-        dd($id);
+        $request->validate([
+            'name' => ['required', 'max:200'],
+            'price' => ['required', 'integer'],
+            'is_default' => ['required'],
+            'status' => ['required']
+        ]);
+
+        $variantItem = ProductVariantItem::findOrFail($variantItemId);
+
+        $variantItem->name = $request->name;
+        $variantItem->price = $request->price;
+        $variantItem->is_default = $request->is_default;
+        $variantItem->status = $request->status;
+
+        $variantItem->save();
+
+        toastr('Variant Item Updated Successfully!', 'success');
+
+        return redirect()->route('root.products-variant-item.index', [
+            $variantItem->productVariant->product_id,
+            $variantItem->product_variant_id
+        ]);
+    }
+
+    public function destroy(string $variantItemId)
+    {
+        dd($variantItemId);
     }
 }
