@@ -36,7 +36,7 @@ class ProductDataTable extends DataTable
                                 <i class='fas fa-heart'></i>
                                 Image Gallery                    
                             </a>
-                            <a class='dropdown-item has-icon' href='" . route('root.products-variant.index') . "'>
+                            <a class='dropdown-item has-icon' href='" . route('root.products-variant.index', ['product' => $query->id]) . "'>
                                 <i class='fas fa-file'></i>
                                 Variants                    
                             </a>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\DataTables\ProductVariantDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\Product;
+use App\Models\ProductVariant;
 use Illuminate\Http\Request;
 
 class ProductVariantController extends Controller
@@ -11,9 +13,11 @@ class ProductVariantController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(ProductVariantDataTable $dataTable)
+    public function index(Request $request, ProductVariantDataTable $dataTable)
     {
-        return $dataTable->render("root.product.variant.index");
+        $product = Product::findOrFail($request->product);
+
+        return $dataTable->render("root.product.variant.index", compact("product"));
     }
 
     /**
@@ -21,7 +25,7 @@ class ProductVariantController extends Controller
      */
     public function create()
     {
-        //
+        return view('root.product.variant.create');
     }
 
     /**
@@ -29,7 +33,23 @@ class ProductVariantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'product_id' => ['required', 'integer'],
+            'name' => ['required', 'max:200'],
+            'status' => ['required']
+        ]);
+
+        $variant = new ProductVariant();
+
+        $variant->product_id = $request->product_id;
+        $variant->name = $request->name;
+        $variant->status = $request->status;
+
+        $variant->save();
+
+        toastr('Variant Created Successfully!', 'success');
+
+        return redirect()->route('root.products-variant.index', ['product' => $request->product_id]);
     }
 
     /**
