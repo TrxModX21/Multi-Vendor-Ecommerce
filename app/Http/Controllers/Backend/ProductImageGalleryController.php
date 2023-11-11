@@ -84,6 +84,15 @@ class ProductImageGalleryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $image = ProductImageGallery::findOrFail($id);
+
+        $this->deleteImage($image->images);
+
+        $image->delete();
+
+        return response([
+            'status' => 'success',
+            'message' => 'Image Deleted Successfullty!'
+        ]);
     }
 }
