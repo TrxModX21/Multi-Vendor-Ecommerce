@@ -22,7 +22,34 @@ class ProductVariantDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'productvariant.action')
+            ->addColumn('action', function ($query) {
+                $variantItems = "<a href='" . route('root.products-variant.edit', $query->id) . "' class='btn btn-info'>
+                    <i class='far fa-edit'></i>
+                    Variant Items
+                </a>";
+
+                $editBtn = "<a href='" . route('root.products-variant.edit', $query->id) . "' class='btn btn-primary ml-2'><i class='far fa-edit'></i></a>";
+
+                $deleteBtn = "<a href='" . route('root.products-variant.destroy', $query->id) . "' class='btn btn-danger ml-2 delete-item'><i class='far fa-trash-alt'></i></a>";
+
+                return $variantItems. $editBtn . $deleteBtn;
+            })
+            ->addColumn('status', function ($query) {
+                if ($query->status == 1) {
+                    $button = '<label class="custom-switch mt-2">
+                        <input type="checkbox" checked name="" class="custom-switch-input change-status" data-id="' . $query->id . '" />
+                        <span class="custom-switch-indicator"></span>
+                    </label>';
+                } else {
+                    $button = '<label class="custom-switch mt-2">
+                        <input type="checkbox" name="" class="custom-switch-input change-status" data-id="' . $query->id . '" />
+                        <span class="custom-switch-indicator"></span>
+                    </label>';
+                }
+
+                return $button;
+            })
+            ->rawColumns(['action', 'status'])
             ->setRowId('id');
     }
 
@@ -40,20 +67,20 @@ class ProductVariantDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('productvariant-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->setTableId('productvariant-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(0)
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make('excel'),
+                Button::make('csv'),
+                Button::make('pdf'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload')
+            ]);
     }
 
     /**
@@ -62,15 +89,18 @@ class ProductVariantDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('id')
+                ->width(80)
+                ->addClass('text-center'),
+            Column::make('name'),
+            Column::make('status')
+                ->width(200)
+                ->addClass('text-center'),
             Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+                ->exportable(false)
+                ->printable(false)
+                ->width(400)
+                ->addClass('text-center'),
         ];
     }
 
