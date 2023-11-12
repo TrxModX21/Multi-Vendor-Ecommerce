@@ -80,3 +80,5 @@ Route::put('products-variant-item-update/{variantItemId}', [ProductVariantItemCo
     ->name('products-variant-item.update');
 Route::delete('products-variant-item/{variantItemId}', [ProductVariantItemController::class, 'destroy'])
     ->name('products-variant-item.destroy');
+Route::put('products-variant-item/change-status', [ProductVariantItemController::class, 'changeStatus'])
+    ->name('products-variant-item.change-status');
