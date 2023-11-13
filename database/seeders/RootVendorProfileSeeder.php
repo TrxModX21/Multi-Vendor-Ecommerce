@@ -18,6 +18,7 @@ class RootVendorProfileSeeder extends Seeder
         $vendor = new Vendor();
 
         $vendor->banner = 'uploads/123.jpg';
+        $vendor->shop_name = 'Root Vendor Shop';
         $vendor->phone = '123132321';
         $vendor->email = 'trxcode21@gmail.com';
         $vendor->address = 'IND';

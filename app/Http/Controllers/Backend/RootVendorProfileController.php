@@ -37,6 +37,7 @@ class RootVendorProfileController extends Controller
     {
         $request->validate([
             'banner' => ['image', 'max:2048'],
+            'shop_name' => ['required', 'max:200'],
             'phone' => ['required', 'max:15'],
             'email' => ['required', 'email'],
             'address' => ['required'],
@@ -50,6 +51,7 @@ class RootVendorProfileController extends Controller
         $bannerPath = $this->updateImage($request, 'banner', 'uploads', $vendor->banner);
 
         $vendor->banner = empty(!$bannerPath) ? $bannerPath : $vendor->banner;
+        $vendor->shop_name = $request->shop_name;
         $vendor->phone = $request->phone;
         $vendor->email = $request->email;
         $vendor->address = $request->address;
