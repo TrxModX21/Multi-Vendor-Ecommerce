@@ -40,10 +40,6 @@ class ProductDataTable extends DataTable
                                 <i class='fas fa-file'></i>
                                 Variants                    
                             </a>
-                            <a class='dropdown-item has-icon' href='#'>
-                                <i class='fas fa-clock'></i>                    
-                                Something Else
-                            </a>
                         </div>
                 </div>";
 
