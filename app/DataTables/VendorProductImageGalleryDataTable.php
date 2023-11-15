@@ -22,7 +22,15 @@ class VendorProductImageGalleryDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'vendorproductimagegallery.action')
+            ->addColumn('action', function ($query) {
+                $deleteBtn = "<a href='" . route('vendor.products-image-gallery.destroy', $query->id) . "' class='btn btn-danger ml-2 delete-item'><i class='far fa-trash-alt'></i></a>";
+
+                return $deleteBtn;
+            })
+            ->addColumn('images', function ($query) {
+                return "<img width='150px' src='" . asset($query->images) . "' alt='no-image'></img>";
+            })
+            ->rawColumns(['action', 'images'])
             ->setRowId('id');
     }
 
@@ -31,7 +39,8 @@ class VendorProductImageGalleryDataTable extends DataTable
      */
     public function query(ProductImageGallery $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->where('product_id', request()->product)
+            ->newQuery();
     }
 
     /**
@@ -44,7 +53,7 @@ class VendorProductImageGalleryDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
-            ->orderBy(1)
+            ->orderBy(0)
             ->selectStyleSingle()
             ->buttons([
                 Button::make('excel'),
@@ -62,15 +71,13 @@ class VendorProductImageGalleryDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('id')->width(100),
+            Column::make('images'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
-                ->width(60)
+                ->width(200)
                 ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
         ];
     }
 

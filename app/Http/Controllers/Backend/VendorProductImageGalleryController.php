@@ -5,14 +5,17 @@ namespace App\Http\Controllers\Backend;
 use App\DataTables\VendorProductImageGalleryDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\ProductImageGallery;
+use App\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
 
 class VendorProductImageGalleryController extends Controller
 {
+    use ImageUploadTrait;
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request, VendorProductImageGalleryDataTable $dataTable) 
+    public function index(Request $request, VendorProductImageGalleryDataTable $dataTable)
     {
         $product = Product::findOrFail($request->product);
 
@@ -32,7 +35,24 @@ class VendorProductImageGalleryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'images.*' => ['required', 'image', 'max:2048'],
+        ]);
+
+        $imagePaths = $this->uploadMultiImage($request, 'images', 'uploads');
+
+        foreach ($imagePaths as $path) {
+            $productImageGallery = new ProductImageGallery();
+
+            $productImageGallery->images = $path;
+            $productImageGallery->product_id = $request->product_id;
+
+            $productImageGallery->save();
+        }
+
+        toastr('Uploaded Successfully!', 'success');
+
+        return redirect()->back();
     }
 
     /**
@@ -64,6 +84,15 @@ class VendorProductImageGalleryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $image = ProductImageGallery::findOrFail($id);
+
+        $this->deleteImage($image->images);
+
+        $image->delete();
+
+        return response([
+            'status' => 'success',
+            'message' => 'Image Deleted Successfullty!'
+        ]);
     }
 }
