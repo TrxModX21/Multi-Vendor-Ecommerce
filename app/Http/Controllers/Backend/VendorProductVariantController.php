@@ -33,7 +33,23 @@ class VendorProductVariantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'product_id' => ['required', 'integer'],
+            'name' => ['required', 'max:200'],
+            'status' => ['required']
+        ]);
+
+        $variant = new ProductVariant();
+
+        $variant->product_id = $request->product_id;
+        $variant->name = $request->name;
+        $variant->status = $request->status;
+
+        $variant->save();
+
+        toastr('Variant Created Successfully!', 'success');
+
+        return redirect()->route('vendor.products-variant.index', ['product' => $request->product_id]);
     }
 
     /**

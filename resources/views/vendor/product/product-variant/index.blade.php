@@ -13,6 +13,7 @@
                             <i class="far fa-user"></i>
                             Products Variant
                         </h3>
+                        <h6>Product: {{ $product->name }}</h6>
                         <div class="create_button">
                             <a href="{{ route('vendor.products-variant.create', ['product' => $product->id]) }}"
                                 class="btn btn-primary">
