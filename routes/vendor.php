@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\Backend\VendorProductImageGalleryController;
+use App\Http\Controllers\Backend\VendorProductVariantController;
 use App\Http\Controllers\Backend\VendorProfileController;
 use App\Http\Controllers\Backend\VendorShopProfileController;
 use Illuminate\Support\Facades\Route;
@@ -28,3 +29,8 @@ Route::resource('products', VendorProductController::class);
 
 /** PRODUCTS IMAGE GALLERY ROUTES */
 Route::resource('products-image-gallery', VendorProductImageGalleryController::class);
+
+/** PRODUCTS VARIANT ROUTES */
+Route::put('products-variant/change-status', [VendorProductVariantController::class, 'changeStatus'])
+    ->name('products-variant.change-status');
+Route::resource('products-variant', VendorProductVariantController::class);
