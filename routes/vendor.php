@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\Backend\VendorProductController;
+use App\Http\Controllers\Backend\VendorProductImageGalleryController;
 use App\Http\Controllers\Backend\VendorProfileController;
 use App\Http\Controllers\Backend\VendorShopProfileController;
 use Illuminate\Support\Facades\Route;
@@ -24,3 +25,6 @@ Route::get('products/get-subcategories', [VendorProductController::class, 'getSu
 Route::get('products/get-childcategories', [VendorProductController::class, 'getChildCategories'])
     ->name('products.get-childcategories');
 Route::resource('products', VendorProductController::class);
+
+/** PRODUCTS IMAGE GALLERY ROUTES */
+Route::resource('products-image-gallery', VendorProductImageGalleryController::class);
