@@ -28,7 +28,7 @@ class VendorProductVariantDataTable extends DataTable
                     Variant Items
                 </a>";
 
-                $editBtn = "<a href='" . route('root.products-variant.edit', $query->id) . "' class='btn btn-primary ml-2'><i class='far fa-edit'></i></a>";
+                $editBtn = "<a href='" . route('vendor.products-variant.edit', $query->id) . "' class='btn btn-primary ml-2'><i class='far fa-edit'></i></a>";
 
                 $deleteBtn = "<a href='" . route('root.products-variant.destroy', $query->id) . "' class='btn btn-danger ml-2 delete-item'><i class='far fa-trash-alt'></i></a>";
 
