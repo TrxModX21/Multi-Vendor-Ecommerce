@@ -88,7 +88,6 @@ class VendorProductVariantItemController extends Controller
     public function destroy(string $variantItemId)
     {
         $variantItem = ProductVariantItem::findOrFail($variantItemId);
-
         $variantItem->delete();
 
         return response([
@@ -100,9 +99,7 @@ class VendorProductVariantItemController extends Controller
     public function changeStatus(Request $request)
     {
         $variantItem = ProductVariantItem::findOrFail($request->id);
-
         $variantItem->status = $request->status == 'true' ? 1 : 0;
-
         $variantItem->save();
 
         return response([
