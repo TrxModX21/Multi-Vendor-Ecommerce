@@ -49,7 +49,7 @@ class VendorProductVariantItemController extends Controller
 
         toastr('Variant Item Created Successfully!', 'success');
 
-        return redirect()->route('root.products-variant-item.index', [$request->product_id, $request->variant_id]);
+        return redirect()->route('vendor.products-variant-item.index', [$request->product_id, $request->variant_id]);
     }
 
     public function edit(string $variantItemId)
