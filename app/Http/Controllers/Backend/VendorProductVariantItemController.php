@@ -79,7 +79,7 @@ class VendorProductVariantItemController extends Controller
 
         toastr('Variant Item Updated Successfully!', 'success');
 
-        return redirect()->route('root.products-variant-item.index', [
+        return redirect()->route('vendor.products-variant-item.index', [
             $variantItem->productVariant->product_id,
             $variantItem->product_variant_id
         ]);
