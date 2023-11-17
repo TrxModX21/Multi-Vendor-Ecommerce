@@ -183,7 +183,7 @@ class VendorProductController extends Controller
     public function destroy(string $id)
     {
         $product = Product::findOrFail($id);
-        
+
         if ($product->vendor_id != Auth::user()->vendor->id) {
             abort(404);
         }
@@ -228,5 +228,18 @@ class VendorProductController extends Controller
             ->get();
 
         return $childCategories;
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $product = Product::findOrFail($request->id);
+
+        $product->status = $request->status == 'true' ? 1 : 0;
+
+        $product->save();
+
+        return response([
+            'message' => 'Status has been updated!'
+        ]);
     }
 }
