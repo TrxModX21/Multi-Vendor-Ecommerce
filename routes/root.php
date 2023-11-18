@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\ProductImageGalleryController;
 use App\Http\Controllers\Backend\ProductVariantController;
 use App\Http\Controllers\Backend\ProductVariantItemController;
 use App\Http\Controllers\Backend\RootVendorProfileController;
+use App\Http\Controllers\Backend\SellerProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use Illuminate\Support\Facades\Route;
@@ -84,3 +85,6 @@ Route::delete('products-variant-item/{variantItemId}', [ProductVariantItemContro
     ->name('products-variant-item.destroy');
 Route::put('products-variant-item/change-status', [ProductVariantItemController::class, 'changeStatus'])
     ->name('products-variant-item.change-status');
+
+/** SELLER PRODUCT ROUTES */
+Route::get('seller-product', [SellerProductController::class, 'index'])->name('seller-product.index');
