@@ -51,6 +51,28 @@
                     }
                 })
             });
+
+            // CHANGE APPROVE STATUS
+            $('body').on('change', '.is_approve', function() {
+                let value = $(this).val();
+                let id = $(this).data('id');
+
+                $.ajax({
+                    url: "{{ route('root.change-approve-status') }}",
+                    method: 'PUT',
+                    data: {
+                        value: value,
+                        id: id
+                    },
+                    success: function(data) {
+                        toastr.success(data.message);
+                        window.location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(error);
+                    }
+                })
+            })
         })
     </script>
 @endpush
