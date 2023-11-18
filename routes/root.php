@@ -98,3 +98,5 @@ Route::put('change-approve-status', [SellerProductController::class, 'changeAppr
 /** FLASH SALE ROUTES */
 Route::get('flash-sale', [FlashSaleController::class, 'index'])
     ->name('flash-sale.index');
+Route::put('flash-sale', [FlashSaleController::class, 'update'])
+    ->name('flash-sale.update');

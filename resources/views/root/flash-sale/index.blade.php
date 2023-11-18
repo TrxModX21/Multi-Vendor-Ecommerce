@@ -16,12 +16,15 @@
                             <h4>Flash Sale End Date</h4>
                         </div>
                         <div class="card-body">
-                            <form action="">
+                            <form action="{{ route('root.flash-sale.update') }}" method="POST">
+                                @csrf
+                                @method('PUT')
+
                                 <div class="col-md">
                                     <div class="form-group">
                                         <label for="sale_end_date">Sale End Date</label>
                                         <input type="text" name="sale_end_date" id="sale_end_date"
-                                            class="form-control datepicker" value="{{ old('sale_end_date') }}" />
+                                            class="form-control datepicker" value="{{ @$flashSaleDate->sale_end_date }}" />
                                     </div>
                                     <button type="submit" class="btn btn-primary">Save</button>
                                 </div>
