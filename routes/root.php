@@ -2,6 +2,7 @@
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
+use App\Http\Controllers\Backend\FlashSaleController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProductImageGalleryController;
 use App\Http\Controllers\Backend\ProductVariantController;
@@ -87,6 +88,13 @@ Route::put('products-variant-item/change-status', [ProductVariantItemController:
     ->name('products-variant-item.change-status');
 
 /** SELLER PRODUCT ROUTES */
-Route::get('seller-product', [SellerProductController::class, 'index'])->name('seller-product.index');
-Route::get('seller-pending-product', [SellerProductController::class, 'pendingProduct'])->name('seller-pending-product.index');
-Route::put('change-approve-status', [SellerProductController::class, 'changeApproveStatus'])->name('change-approve-status');
+Route::get('seller-product', [SellerProductController::class, 'index'])
+    ->name('seller-product.index');
+Route::get('seller-pending-product', [SellerProductController::class, 'pendingProduct'])
+    ->name('seller-pending-product.index');
+Route::put('change-approve-status', [SellerProductController::class, 'changeApproveStatus'])
+    ->name('change-approve-status');
+
+/** FLASH SALE ROUTES */
+Route::get('flash-sale', [FlashSaleController::class, 'index'])
+    ->name('flash-sale.index');

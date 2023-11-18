@@ -62,12 +62,15 @@
             {{-- MANAGE PRODUCTS END --}}
 
             {{-- MANAGE ECOMERCE START --}}
-            <li class="dropdown {{ setActive(['root.vendor-profile.*']) }}">
+            <li class="dropdown {{ setActive(['root.vendor-profile.*', 'root.flash-sale.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                     <i class="fas fa-columns"></i>
                     <span>E-Comerce</span>
                 </a>
                 <ul class="dropdown-menu">
+                    <li class="{{ setActive(['root.flash-sale.*']) }}">
+                        <a class="nav-link" href="{{ route('root.flash-sale.index') }}">Flash Sale</a>
+                    </li>
                     <li class="{{ setActive(['root.vendor-profile.*']) }}">
                         <a class="nav-link" href="{{ route('root.vendor-profile.index') }}">Vendor Profile</a>
                     </li>
