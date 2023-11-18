@@ -37,7 +37,7 @@
 
             {{-- MANAGE PRODUCTS START --}}
             <li
-                class="dropdown {{ setActive(['root.brand.*', 'root.products.*', 'root.seller-product.*', 'root.seller-pending-product.*']) }}">
+                class="dropdown {{ setActive(['root.brand.*', 'root.products.*', 'root.products-image-gallery.*', 'root.products-variant.*', 'root.products-variant-item.*', 'root.seller-product.*', 'root.seller-pending-product.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                     <i class="fas fa-columns"></i>
                     <span>Manage Products</span>
@@ -46,7 +46,8 @@
                     <li class="{{ setActive(['root.brand.*']) }}">
                         <a class="nav-link" href="{{ route('root.brand.index') }}">Brands</a>
                     </li>
-                    <li class="{{ setActive(['root.products.*']) }}">
+                    <li
+                        class="{{ setActive(['root.products.*', 'root.products-image-gallery.*', 'root.products-variant.*', 'root.products-variant-item.*']) }}">
                         <a class="nav-link" href="{{ route('root.products.index') }}">Products</a>
                     </li>
                     <li class="{{ setActive(['root.seller-product.*']) }}">

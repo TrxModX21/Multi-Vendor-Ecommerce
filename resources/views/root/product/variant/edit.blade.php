@@ -27,9 +27,9 @@
                                 <div class="form-group">
                                     <label for="status">Status</label>
                                     <select name="status" id="status" class="form-control">
-                                        <option {{ $variant->product == 1 ? 'selected' : '' }} value="1">Active
+                                        <option {{ $variant->status == 1 ? 'selected' : '' }} value="1">Active
                                         </option>
-                                        <option {{ $variant->product == 0 ? 'selected' : '' }} value="0">Inactive
+                                        <option {{ $variant->status == 0 ? 'selected' : '' }} value="0">Inactive
                                         </option>
                                     </select>
                                 </div>
