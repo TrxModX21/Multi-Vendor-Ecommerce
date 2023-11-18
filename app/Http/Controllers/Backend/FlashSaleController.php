@@ -61,5 +61,31 @@ class FlashSaleController extends Controller
 
         return redirect()->back();
     }
+
+    public function homeStatus(Request $request)
+    {
+        $flashSaleItem = FlashSaleItem::findOrFail($request->id);
+
+        $flashSaleItem->show_at_home = $request->status == 'true' ? 1 : 0;
+
+        $flashSaleItem->save();
+
+        return response([
+            'message' => 'Status has been updated'
+        ]);
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $flashSaleItem = FlashSaleItem::findOrFail($request->id);
+
+        $flashSaleItem->status = $request->status == 'true' ? 1 : 0;
+
+        $flashSaleItem->save();
+
+        return response([
+            'message' => 'Status has been updated'
+        ]);
+    }
 }
 

@@ -102,3 +102,7 @@ Route::put('flash-sale', [FlashSaleController::class, 'update'])
     ->name('flash-sale.update');
 Route::post('flash-sale/add-product', [FlashSaleController::class, 'addProduct'])
     ->name('flash-sale.add-product');
+Route::put('flash-sale/show-at-home/status-change', [FlashSaleController::class, 'homeStatus'])
+    ->name('flash-sale.show-at-home.status-change');
+Route::put('flash-sale/change-status', [FlashSaleController::class, 'changeStatus'])
+    ->name('flash-sale.change-status');

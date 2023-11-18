@@ -118,7 +118,28 @@
                 let id = $(this).data('id');
 
                 $.ajax({
-                    url: "{{ route('root.products.change-status') }}",
+                    url: "{{ route('root.flash-sale.change-status') }}",
+                    method: 'PUT',
+                    data: {
+                        status: isChecked,
+                        id: id
+                    },
+                    success: function(data) {
+                        toastr.success(data.message);
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(error);
+                    }
+                })
+            });
+
+            // CHANGE SHOW AT HOME STATUS
+            $('body').on('click', '.home-status', function() {
+                let isChecked = $(this).is(':checked');
+                let id = $(this).data('id');
+
+                $.ajax({
+                    url: "{{ route('root.flash-sale.show-at-home.status-change') }}",
                     method: 'PUT',
                     data: {
                         status: isChecked,
