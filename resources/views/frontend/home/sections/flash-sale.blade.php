@@ -6,7 +6,8 @@
                     <div class="wsus__flash_coundown">
                         <span class=" end_text">Flash Sale</span>
                         <div class="simply-countdown simply-countdown-one"></div>
-                        <a class="common_btn" href="#">see more <i class="fas fa-caret-right"></i></a>
+                        <a class="common_btn" href="{{ route('flash-sale') }}">see more <i
+                                class="fas fa-caret-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -14,10 +15,10 @@
         <div class="row flash_sell_slider">
 
             @foreach ($flashSaleItem as $item)
+                @php
+                    $product = \App\Models\Product::find($item->product_id);
+                @endphp
                 <div class="col-xl-3 col-sm-6 col-lg-4">
-                    @php
-                        $product = \App\Models\Product::find($item->product_id);
-                    @endphp
                     <div class="wsus__product_item">
                         <span class="wsus__new">{{ productType($product->product_type) }}</span>
                         @if (checkDiscount($product))
