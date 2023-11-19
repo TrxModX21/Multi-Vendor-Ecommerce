@@ -11,3 +11,41 @@ function setActive(array $route)
         }
     }
 }
+
+/** CHECK IF PRODUCT HAVE DISCOUNT */
+function checkDiscount($product)
+{
+    $currentDate = date('Y-m-d');
+
+    if ($product->offer_price > 0 && $currentDate >= $product->offer_start_date && $currentDate <= $product->offer_end_date) {
+        return true;
+    }
+
+    return false;
+}
+
+/** CALCULATE DISCOUNT PERCENT */
+function calculateDiscountPercent($originalPrice, $discountPrice)
+{
+    $discountAmount = $originalPrice - $discountPrice;
+    $discountPercent = ($discountAmount / $originalPrice) * 100;
+
+    return intval($discountPercent);
+}
+
+/** CHECK THE PRODUCT TYPE */
+function productType($type): string
+{
+    switch ($type) {
+        case 'new_arrival':
+            return 'New';
+        case 'featured_product':
+            return 'Featured';
+        case 'top_product':
+            return 'Top';
+        case 'best_product':
+            return 'Best';
+        default:
+            return '';
+    }
+}
