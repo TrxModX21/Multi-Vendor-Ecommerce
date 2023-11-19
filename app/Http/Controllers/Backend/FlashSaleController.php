@@ -41,9 +41,11 @@ class FlashSaleController extends Controller
     public function addProduct(Request $request)
     {
         $request->validate([
-            'product' => ['required'],
+            'product' => ['required', 'unique:flash_sale_items,product_id'],
             'home_status' => ['required'],
             'status' => ['required']
+        ], [
+            'product.unique' => 'The Product is already in flash sale item!'
         ]);
 
         $flashSaleDate = FlashSale::first();
@@ -85,6 +87,18 @@ class FlashSaleController extends Controller
 
         return response([
             'message' => 'Status has been updated'
+        ]);
+    }
+
+    public function destroy(string $id)
+    {
+        $flashSaleItem = FlashSaleItem::findOrFail($id);
+
+        $flashSaleItem->delete();
+
+        return response([
+            'status' => 'success',
+            'message' => 'Flash Sale Product Deleted Successfully!'
         ]);
     }
 }
