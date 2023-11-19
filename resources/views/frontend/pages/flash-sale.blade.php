@@ -6,10 +6,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <h4>offer detaila</h4>
+                        <h4>Flash Sale</h4>
                         <ul>
-                            <li><a href="#">daily deals</a></li>
-                            <li><a href="#">offer details</a></li>
+                            <li><a href="{{ url('/') }}">Home</a></li>
+                            <li><a href="javascript:;">Flash Sale</a></li>
                         </ul>
                     </div>
                 </div>
