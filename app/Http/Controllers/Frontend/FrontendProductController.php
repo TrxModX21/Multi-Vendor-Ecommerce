@@ -10,7 +10,14 @@ class FrontendProductController extends Controller
 {
     public function showProduct(string $slug)
     {
-        $product = Product::where('slug', $slug)
+        $product = Product::with([
+            'vendor',
+            'category',
+            'productImageGalleries',
+            'variants',
+            'brand'
+        ])
+            ->where('slug', $slug)
             ->where('status', 1)
             ->first();
 
