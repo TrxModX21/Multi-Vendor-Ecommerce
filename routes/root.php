@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\ProductVariantController;
 use App\Http\Controllers\Backend\ProductVariantItemController;
 use App\Http\Controllers\Backend\RootVendorProfileController;
 use App\Http\Controllers\Backend\SellerProductController;
+use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use Illuminate\Support\Facades\Route;
@@ -108,3 +109,7 @@ Route::put('flash-sale/change-status', [FlashSaleController::class, 'changeStatu
     ->name('flash-sale.change-status');
 Route::delete('flash-sale/{id}', [FlashSaleController::class, 'destroy'])
     ->name('flash-sale.destroy');
+
+/** SETTINGS ROUTES */
+Route::get('settings', [SettingController::class, 'index'])
+    ->name('settings.index');

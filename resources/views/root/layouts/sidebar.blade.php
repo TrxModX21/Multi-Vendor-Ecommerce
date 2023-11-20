@@ -90,6 +90,9 @@
                     </li>
                 </ul>
             </li>
+
+            <li><a class="nav-link" href="{{ route('root.settings.index') }}"><i class="far fa-square"></i>
+                    <span>Settings</span></a></li>
             {{-- MANAGE WEBSITE END --}}
 
             {{-- <li class="dropdown">
