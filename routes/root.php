@@ -2,6 +2,7 @@
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
+use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\FlashSaleController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProductImageGalleryController;
@@ -109,6 +110,9 @@ Route::put('flash-sale/change-status', [FlashSaleController::class, 'changeStatu
     ->name('flash-sale.change-status');
 Route::delete('flash-sale/{id}', [FlashSaleController::class, 'destroy'])
     ->name('flash-sale.destroy');
+
+/** COUPON ROUTES */
+Route::resource('coupons', CouponController::class);
 
 /** SETTINGS ROUTES */
 Route::get('settings', [SettingController::class, 'index'])
