@@ -14,7 +14,9 @@ class UserAddressController extends Controller
      */
     public function index()
     {
-        return view('frontend.dashboard.address.index');
+        $userAddress = UserAddress::where('user_id', Auth::user()->id)->get();
+
+        return view('frontend.dashboard.address.index', compact('userAddress'));
     }
 
     /**
