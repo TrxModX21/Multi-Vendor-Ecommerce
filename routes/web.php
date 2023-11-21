@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\RootController;
 use App\Http\Controllers\Frontend\FlashSaleController;
 use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\UserAddressController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Frontend\UserProfileController;
 use App\Http\Controllers\ProfileController;
@@ -53,4 +54,7 @@ Route::group([
 
     Route::post('/profile', [UserProfileController::class, 'updatePassword'])
         ->name('profile.update.password');
+
+    /** USER ADRESS ROUTE */
+    Route::resource('address', UserAddressController::class);
 });
