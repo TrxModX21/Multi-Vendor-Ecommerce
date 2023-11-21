@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\DataTables\ShippingRuleDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\ShippingRule;
 use Illuminate\Http\Request;
 
 class ShippingRuleController extends Controller
@@ -21,7 +22,7 @@ class ShippingRuleController extends Controller
      */
     public function create()
     {
-        //
+        return view('root.shipping-rule.create');
     }
 
     /**
@@ -29,7 +30,27 @@ class ShippingRuleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'max:200'],
+            'type' => ['required'],
+            'min_cost' => ['nullable', 'integer'],
+            'cost' => ['required', 'integer'],
+            'status' => ['required'],
+        ]);
+
+        $shippingRule = new ShippingRule();
+
+        $shippingRule->name = $request->name;
+        $shippingRule->type = $request->type;
+        $shippingRule->min_cost = $request->min_cost;
+        $shippingRule->cost = $request->cost;
+        $shippingRule->status = $request->status;
+
+        $shippingRule->save();
+
+        toastr('Shipping Rule Created Successfully', 'success');
+
+        return redirect()->route('root.shipping-rule.index');
     }
 
     /**
