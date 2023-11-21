@@ -104,6 +104,26 @@ class ShippingRuleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $shippingRule = ShippingRule::findOrFail($id);
+
+        $shippingRule->delete();
+
+        return response([
+            'status' => 'success',
+            'message' => 'Shipping Rule Deleted Successfully!'
+        ]);
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $shippingRule = ShippingRule::findOrFail($request->id);
+
+        $shippingRule->status = $request->status == 'true' ? 1 : 0;
+
+        $shippingRule->save();
+
+        return response([
+            'message' => 'Status has been updated'
+        ]);
     }
 }
