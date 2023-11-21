@@ -55,7 +55,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <a href="dsahboard_address_add.html" class="add_address_btn common_btn"><i
+                                    <a href="{{ route('user.address.create') }}" class="add_address_btn common_btn"><i
                                             class="far fa-plus"></i>
                                         add new address</a>
                                 </div>
