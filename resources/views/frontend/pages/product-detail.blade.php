@@ -240,16 +240,21 @@
                             </div>
                             {{-- TODO:: COLOR AND SIZE DYNAMIC --}}
 
-                            <form class="shopping-cart-form" method="POST">
+                            <form class="shopping-cart-form">
+
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+
                                 <div class="wsus__selectbox">
                                     <div class="row">
                                         @foreach ($product->variants as $variant)
                                             <div class="col-xl-6 col-sm-6">
                                                 <h5 class="mb-2">{{ $variant->name }}:</h5>
-                                                <select class="select_2" name="variants[]">
+                                                <select class="select_2" name="variant_items[]">
                                                     @foreach ($variant->productVariantItems as $variantItem)
-                                                        <option {{ $variantItem->is_default == 1 ? 'selected' : '' }}>
+                                                        <option value="{{ $variantItem->id }}"
+                                                            {{ $variantItem->is_default == 1 ? 'selected' : '' }}>
                                                             {{ $variantItem->name }}
+                                                            ({{ $settings->currency_icon . " " . $variantItem->price }})
                                                         </option>
                                                     @endforeach
                                                 </select>
