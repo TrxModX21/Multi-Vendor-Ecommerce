@@ -1,5 +1,9 @@
 @extends('frontend.layouts.master')
 
+@section('title')
+    {{ $settings->site_name }} || Home Page
+@endsection
+
 @section('content')
     @include('frontend.home.sections.product-modal')
 

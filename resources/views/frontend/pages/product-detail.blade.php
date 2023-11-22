@@ -1,5 +1,9 @@
 @extends('frontend.layouts.master')
 
+@section('title')
+    {{ $settings->site_name }} || Product Details
+@endsection
+
 @section('content')
     <section class="product_popup_modal">
         <div class="modal fade" id="exampleModal2" tabindex="-1" aria-hidden="true">
@@ -194,9 +198,10 @@
                             <a class="title" href="javascript:;">{{ $product->name }}</a>
                             <p class="wsus__stock_area"><span class="in_stock">in stock</span> (167 item)</p>
                             @if (checkDiscount($product))
-                                <h4>{{$settings->currency_icon}} {{ $product->offer_price }} <del>{{$settings->currency_icon}} {{ $product->price }}</del></h4>
+                                <h4>{{ $settings->currency_icon }} {{ $product->offer_price }}
+                                    <del>{{ $settings->currency_icon }} {{ $product->price }}</del></h4>
                             @else
-                                <h4>{{$settings->currency_icon}} {{ $product->price }}</h4>
+                                <h4>{{ $settings->currency_icon }} {{ $product->price }}</h4>
                             @endif
                             <p class="review">
                                 <i class="fas fa-star"></i>
