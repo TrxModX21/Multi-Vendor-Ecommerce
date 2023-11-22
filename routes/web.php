@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\RootController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\FlashSaleController;
 use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -36,6 +37,9 @@ Route::get('root/login', [RootController::class, 'login'])->name('root.login');
 Route::get('flash-sale', [FlashSaleController::class, 'index'])->name('flash-sale');
 
 Route::get('product-detail/{slug}', [FrontendProductController::class, 'showProduct'])->name('product-detail');
+
+/** ADD TO CART ROUTES */
+Route::post('add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
 
 Route::group([
     'middleware' => ['auth', 'verified'],

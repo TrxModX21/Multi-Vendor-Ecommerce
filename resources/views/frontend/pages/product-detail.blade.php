@@ -82,7 +82,7 @@
                                         </ul>
                                     </div>
                                     <div class="wsus__quentity">
-                                        <h5>quentity :</h5>
+                                        <h5>quantity :</h5>
                                         <form class="select_number">
                                             <input class="number_area" type="text" min="1" max="100"
                                                 value="1" />
@@ -199,7 +199,8 @@
                             <p class="wsus__stock_area"><span class="in_stock">in stock</span> (167 item)</p>
                             @if (checkDiscount($product))
                                 <h4>{{ $settings->currency_icon }} {{ $product->offer_price }}
-                                    <del>{{ $settings->currency_icon }} {{ $product->price }}</del></h4>
+                                    <del>{{ $settings->currency_icon }} {{ $product->price }}</del>
+                                </h4>
                             @else
                                 <h4>{{ $settings->currency_icon }} {{ $product->price }}</h4>
                             @endif
@@ -239,36 +240,40 @@
                             </div>
                             {{-- TODO:: COLOR AND SIZE DYNAMIC --}}
 
-                            <div class="wsus__selectbox">
-                                <div class="row">
-                                    @foreach ($product->variants as $variant)
-                                        <div class="col-xl-6 col-sm-6">
-                                            <h5 class="mb-2">{{ $variant->name }}:</h5>
-                                            <select class="select_2" name="state">
-                                                @foreach ($variant->productVariantItems as $variantItem)
-                                                    <option {{ $variantItem->is_default == 1 ? 'selected' : '' }}
-                                                        value="">{{ $variantItem->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    @endforeach
+                            <form class="shopping-cart-form" method="POST">
+                                <div class="wsus__selectbox">
+                                    <div class="row">
+                                        @foreach ($product->variants as $variant)
+                                            <div class="col-xl-6 col-sm-6">
+                                                <h5 class="mb-2">{{ $variant->name }}:</h5>
+                                                <select class="select_2" name="variants[]">
+                                                    @foreach ($variant->productVariantItems as $variantItem)
+                                                        <option {{ $variantItem->is_default == 1 ? 'selected' : '' }}>
+                                                            {{ $variantItem->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="wsus__quentity">
-                                <h5>quentity :</h5>
-                                <form class="select_number">
-                                    <input class="number_area" type="text" min="1" max="100"
-                                        value="1" />
-                                </form>
-                            </div>
+                                <div class="wsus__quentity">
+                                    <h5>quantity :</h5>
+                                    <div class="select_number">
+                                        <input class="number_area" name="qty" type="text" min="1"
+                                            max="100" value="1" />
+                                    </div>
+                                </div>
 
-                            <ul class="wsus__button_area">
-                                <li><a class="add_cart" href="#">add to cart</a></li>
-                                <li><a class="buy_now" href="#">buy now</a></li>
-                                <li><a href="#"><i class="fal fa-heart"></i></a></li>
-                                <li><a href="#"><i class="far fa-random"></i></a></li>
-                            </ul>
+                                <ul class="wsus__button_area">
+                                    <li><button type="submit" class="add_cart">add to cart</button></li>
+                                    <li><a class="buy_now" href="#">buy now</a></li>
+                                    <li><a href="#"><i class="fal fa-heart"></i></a></li>
+                                    <li><a href="#"><i class="far fa-random"></i></a></li>
+                                </ul>
+                            </form>
+
                             <p class="brand_model"><span>brand :</span> {{ $product->brand->name }}</p>
                         </div>
                     </div>
@@ -560,7 +565,7 @@
         </div>
     </section>
 
-    <section id="wsus__flash_sell">
+    {{-- <section id="wsus__flash_sell">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -721,5 +726,35 @@
 
             </div>
         </div>
-    </section>
+    </section> --}}
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('.shopping-cart-form').on('submit', function(e) {
+                e.preventDefault();
+
+                let formData = $(this).serialize();
+
+                $.ajax({
+                    method: 'POST',
+                    data: formData,
+                    url: "{{ route('add-to-cart') }}",
+                    success: function(data) {
+
+                    },
+                    error: function(data) {
+
+                    }
+                })
+            });
+        });
+    </script>
+@endpush
