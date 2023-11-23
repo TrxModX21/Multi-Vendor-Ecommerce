@@ -89,7 +89,7 @@
                                                 <div class="product_qty_wrapper">
                                                     <button class="btn btn-danger product-decrement">-</button>
                                                     <input class="product_qty" type="text" data-rowid={{ $item->rowId }}
-                                                        value="1" />
+                                                        value="{{ $item->qty }}" readonly />
                                                     <button class="btn btn-success product-increment">+</button>
 
                                                 </div>
@@ -173,9 +173,45 @@
 
             $('.product-increment').on('click', function() {
                 let input = $(this).siblings('.product_qty');
+                let rowId = input.data('rowid');
+
                 let qty = parseInt(input.val()) + 1;
                 input.val(qty);
+
+                $.ajax({
+                    url: "{{ route('cart.update-qty') }}",
+                    method: 'POST',
+                    data: {
+                        rowId,
+                        qty
+                    },
+                    success: function(data) {
+                        if (data.status === 'success') {
+                            let productId = '#' + rowId;
+                            let totalAmount = "{{ $settings->currency_icon }}" + data
+                                .product_total;
+                            $(productId).text(totalAmount);
+
+                            toastr.success(data.message);
+                        }
+                    },
+                    error: function(data) {
+
+                    }
+                });
+            });
+
+            $('.product-decrement').on('click', function() {
+                let input = $(this).siblings('.product_qty');
                 let rowId = input.data('rowid');
+
+                let qty = parseInt(input.val()) - 1;
+
+                if (qty < 1) {
+                    qty = 1;
+                }
+
+                input.val(qty);
 
                 $.ajax({
                     url: "{{ route('cart.update-qty') }}",
