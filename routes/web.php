@@ -40,6 +40,7 @@ Route::get('product-detail/{slug}', [FrontendProductController::class, 'showProd
 
 /** ADD TO CART ROUTES */
 Route::post('add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
+Route::get('cart-details', [CartController::class, 'cartDetails'])->name('cart-details');
 
 Route::group([
     'middleware' => ['auth', 'verified'],
