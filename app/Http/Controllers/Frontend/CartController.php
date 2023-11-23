@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ProductVariantItem;
 use Illuminate\Http\Request;
-use Cart;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartController extends Controller
 {
@@ -47,8 +47,6 @@ class CartController extends Controller
             ]
         ];
 
-        dd($cartData);
-
         Cart::add($cartData);
 
         return response([
@@ -59,6 +57,8 @@ class CartController extends Controller
 
     public function cartDetails()
     {
-        return view('frontend.pages.cart-detail');
+        $cartItems = Cart::content();
+
+        return view('frontend.pages.cart-detail', compact('cartItems'));
     }
 }
