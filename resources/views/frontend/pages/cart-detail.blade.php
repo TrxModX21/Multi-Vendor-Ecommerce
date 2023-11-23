@@ -85,10 +85,13 @@
                                             </td>
 
                                             <td class="wsus__pro_select">
-                                                <form class="select_number">
-                                                    <input class="number_area" type="text" min="1" max="100"
+                                                <div class="product_qty_wrapper">
+                                                    <button class="btn btn-danger product-decrement">-</button>
+                                                    <input class="product_qty" type="text" data-rowid={{ $item->rowId }}
                                                         value="1" />
-                                                </form>
+                                                    <button class="btn btn-success product-increment">+</button>
+
+                                                </div>
                                             </td>
 
                                             <td class="wsus__pro_icon">
@@ -157,3 +160,39 @@
     </section>
     {{-- BANNER SECTION --}}
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('.product-increment').on('click', function() {
+                let input = $(this).siblings('.product_qty');
+                let qty = parseInt(input.val()) + 1;
+                input.val(qty);
+                let rowId = input.data('rowid');
+
+                $.ajax({
+                    url: "{{ route('cart.update-qty') }}",
+                    method: 'POST',
+                    data: {
+                        rowId,
+                        qty
+                    },
+                    success: function(data) {
+                        if (data.status === 'success') {
+                            toastr.success(data.message);
+                        }
+                    },
+                    error: function(data) {
+
+                    }
+                });
+            });
+        });
+    </script>
+@endpush

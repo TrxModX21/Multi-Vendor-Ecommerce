@@ -9550,3 +9550,14 @@ a:not([href]):not([class]):hover {
   -ms-transition: all linear 0.3s ease;
   -o-transition: all linear 0.3s ease;
 }
+
+.product_qty_wrapper {
+  display: flex;
+}
+
+.product_qty_wrapper>.product_qty {
+  width: 43px;
+  height: 40px;
+  margin: 0 6px;
+  text-align: center;
+}
