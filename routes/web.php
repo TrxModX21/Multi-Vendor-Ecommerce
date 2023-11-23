@@ -42,6 +42,8 @@ Route::get('product-detail/{slug}', [FrontendProductController::class, 'showProd
 Route::post('add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
 Route::get('cart-details', [CartController::class, 'cartDetails'])->name('cart-details');
 Route::post('cart/update-qty', [CartController::class, 'updateProductQuantity'])->name('cart.update-qty');
+Route::get('clear-cart', [CartController::class, 'clearCart'])->name('clear-cart');
+Route::get('cart/remove-product/{rowId}', [CartController::class, 'removeCartItem'])->name('cart.remove-product');
 
 Route::group([
     'middleware' => ['auth', 'verified'],

@@ -26,106 +26,126 @@
 
 
     {{-- CART SECTION --}}
-    <section id="wsus__cart_view">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-9">
-                    <div class="wsus__cart_list">
-                        <div class="table-responsive">
-                            <table>
-                                <tbody>
-                                    <tr class="d-flex">
-                                        <th class="wsus__pro_img">
-                                            product item
-                                        </th>
-
-                                        <th class="wsus__pro_name">
-                                            product details
-                                        </th>
-
-                                        <th class="wsus__pro_tk">
-                                            Unit Price
-                                        </th>
-
-                                        <th class="wsus__pro_tk">
-                                            Total Price
-                                        </th>
-
-                                        <th class="wsus__pro_select">
-                                            quantity
-                                        </th>
-
-                                        <th class="wsus__pro_icon">
-                                            <a href="#" class="common_btn">clear cart</a>
-                                        </th>
-                                    </tr>
-
-                                    @foreach ($cartItems as $item)
-                                        <tr class="d-flex">
-                                            <td class="wsus__pro_img"><img src="{{ asset($item->options->image) }}"
-                                                    alt="product" class="img-fluid w-100">
-                                            </td>
-
-                                            <td class="wsus__pro_name">
-                                                <p>{!! $item->name !!}</p>
-                                                @foreach ($item->options->variants as $key => $variant)
-                                                    <span>{{ $key }}: {{ $variant['name'] }}
-                                                        ({{ $settings->currency_icon . ' ' . $variant['price'] }})
-                                                    </span>
-                                                @endforeach
-                                            </td>
-
-                                            <td class="wsus__pro_tk">
-                                                <h6>{{ $settings->currency_icon . ' ' . $item->price }}</h6>
-                                            </td>
-
-                                            <td class="wsus__pro_tk">
-                                                <h6 id="{{ $item->rowId }}">
-                                                    {{ $settings->currency_icon . ' ' . ($item->price + $item->options->variantsTotal) * $item->qty }}
-                                                </h6>
-                                            </td>
-
-                                            <td class="wsus__pro_select">
-                                                <div class="product_qty_wrapper">
-                                                    <button class="btn btn-danger product-decrement">-</button>
-                                                    <input class="product_qty" type="text" data-rowid={{ $item->rowId }}
-                                                        value="{{ $item->qty }}" readonly />
-                                                    <button class="btn btn-success product-increment">+</button>
-
-                                                </div>
-                                            </td>
-
-                                            <td class="wsus__pro_icon">
-                                                <a href="#"><i class="far fa-times"></i></a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-
-                                </tbody>
-                            </table>
+    @if (count($cartItems) == 0)
+        <section id="wsus__cart_view">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="wsus__cart_list cart_empty p-3 p-sm-5 text-center">
+                            <p class="mb-4">your shopping cart is empty</p>
+                            <a href="product_grid_view.html" class="common_btn"><i class="fal fa-store me-2"></i>view our
+                                product</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3">
-                    <div class="wsus__cart_list_footer_button" id="sticky_sidebar">
-                        <h6>total cart</h6>
-                        <p>subtotal: <span>$124.00</span></p>
-                        <p>delivery: <span>$00.00</span></p>
-                        <p>discount: <span>$10.00</span></p>
-                        <p class="total"><span>total:</span> <span>$134.00</span></p>
+            </div>
+        </section>
+    @else
+        <section id="wsus__cart_view">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-9">
+                        <div class="wsus__cart_list">
+                            <div class="table-responsive">
+                                <table>
+                                    <tbody>
+                                        <tr class="d-flex">
+                                            <th class="wsus__pro_img">
+                                                product item
+                                            </th>
 
-                        <form>
-                            <input type="text" placeholder="Coupon Code">
-                            <button type="submit" class="common_btn">apply</button>
-                        </form>
-                        <a class="common_btn mt-4 w-100 text-center" href="check_out.html">checkout</a>
-                        <a class="common_btn mt-1 w-100 text-center" href="product_grid_view.html"><i
-                                class="fab fa-shopify"></i> go shop</a>
+                                            <th class="wsus__pro_name">
+                                                product details
+                                            </th>
+
+                                            <th class="wsus__pro_tk">
+                                                Unit Price
+                                            </th>
+
+                                            <th class="wsus__pro_tk">
+                                                Total Price
+                                            </th>
+
+                                            <th class="wsus__pro_select">
+                                                quantity
+                                            </th>
+
+                                            <th class="wsus__pro_icon">
+                                                <a href="" class="common_btn clear-cart">clear cart</a>
+                                            </th>
+                                        </tr>
+
+                                        @foreach ($cartItems as $item)
+                                            <tr class="d-flex">
+                                                <td class="wsus__pro_img"><img src="{{ asset($item->options->image) }}"
+                                                        alt="product" class="img-fluid w-100">
+                                                </td>
+
+                                                <td class="wsus__pro_name">
+                                                    <p>{!! $item->name !!}</p>
+                                                    @foreach ($item->options->variants as $key => $variant)
+                                                        <span>{{ $key }}: {{ $variant['name'] }}
+                                                            ({{ $settings->currency_icon . ' ' . $variant['price'] }})
+                                                        </span>
+                                                    @endforeach
+                                                </td>
+
+                                                <td class="wsus__pro_tk">
+                                                    <h6>{{ $settings->currency_icon . ' ' . $item->price }}</h6>
+                                                </td>
+
+                                                <td class="wsus__pro_tk">
+                                                    <h6 id="{{ $item->rowId }}">
+                                                        {{ $settings->currency_icon . ' ' . ($item->price + $item->options->variantsTotal) * $item->qty }}
+                                                    </h6>
+                                                </td>
+
+                                                <td class="wsus__pro_select">
+                                                    <div class="product_qty_wrapper">
+                                                        <button class="btn btn-danger product-decrement">-</button>
+                                                        <input class="product_qty" type="text"
+                                                            data-rowid={{ $item->rowId }} value="{{ $item->qty }}"
+                                                            readonly />
+                                                        <button class="btn btn-success product-increment">+</button>
+
+                                                    </div>
+                                                </td>
+
+                                                <td class="wsus__pro_icon">
+                                                    <a href="{{ route('cart.remove-product', $item->rowId) }}">
+                                                        <i class="far fa-times"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3">
+                        <div class="wsus__cart_list_footer_button" id="sticky_sidebar">
+                            <h6>total cart</h6>
+                            <p>subtotal: <span>$124.00</span></p>
+                            <p>delivery: <span>$00.00</span></p>
+                            <p>discount: <span>$10.00</span></p>
+                            <p class="total"><span>total:</span> <span>$134.00</span></p>
+
+                            <form>
+                                <input type="text" placeholder="Coupon Code">
+                                <button type="submit" class="common_btn">apply</button>
+                            </form>
+                            <a class="common_btn mt-4 w-100 text-center" href="check_out.html">checkout</a>
+                            <a class="common_btn mt-1 w-100 text-center" href="product_grid_view.html"><i
+                                    class="fab fa-shopify"></i> go shop</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
+
     {{-- CART SECTION --}}
 
     {{-- BANNER SECTION --}}
@@ -231,6 +251,53 @@
                         }
                     },
                     error: function(data) {
+
+                    }
+                });
+            });
+
+            $('.clear-cart').on('click', function(e) {
+                e.preventDefault();
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "This action will clear your cart!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, clear it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        $.ajax({
+                            type: 'GET',
+                            url: "{{ route('clear-cart') }}",
+
+                            success: function(data) {
+                                if (data.status == 'success') {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Success!',
+                                        text: data.message,
+                                        confirmButtonText: "OK",
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.reload();
+                                        }
+                                    });
+                                } else if (data.status == 'error') {
+                                    Swal.fire({
+                                        icon: "error",
+                                        title: "Oops...",
+                                        text: data.message,
+                                    });
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                console.log(error);
+                            }
+                        })
 
                     }
                 });
