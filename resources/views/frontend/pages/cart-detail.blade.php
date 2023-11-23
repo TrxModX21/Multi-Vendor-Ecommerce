@@ -80,7 +80,8 @@
                                             </td>
 
                                             <td class="wsus__pro_tk">
-                                                <h6>{{ $settings->currency_icon . ' ' . $item->price + $item->options->variantsTotal }}
+                                                <h6 id="{{ $item->rowId }}">
+                                                    {{ $settings->currency_icon . ' ' . ($item->price + $item->options->variantsTotal) * $item->qty }}
                                                 </h6>
                                             </td>
 
@@ -185,6 +186,11 @@
                     },
                     success: function(data) {
                         if (data.status === 'success') {
+                            let productId = '#' + rowId;
+                            let totalAmount = "{{ $settings->currency_icon }}" + data
+                                .product_total;
+                            $(productId).text(totalAmount);
+
                             toastr.success(data.message);
                         }
                     },
