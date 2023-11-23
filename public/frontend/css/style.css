@@ -9561,3 +9561,7 @@ a:not([href]):not([class]):hover {
   margin: 0 6px;
   text-align: center;
 }
+
+.wsus__cart_list .wsus__pro_name {
+  width: 285px;
+}
