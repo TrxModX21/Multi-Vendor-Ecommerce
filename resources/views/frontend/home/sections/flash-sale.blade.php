@@ -212,8 +212,8 @@
                                     </div>
 
                                     <ul class="wsus__button_area">
-                                        <li><a class="add_cart" href="#">add to cart</a></li>
-                                        <li><a class="buy_now" href="#">buy now</a></li>
+                                        <li><a class="add_cart" href="">add to cart</a></li>
+                                        <li><a class="buy_now" href="">buy now</a></li>
                                         <li><a href="#"><i class="fal fa-heart"></i></a></li>
                                         <li><a href="#"><i class="far fa-random"></i></a></li>
                                     </ul>

@@ -273,7 +273,7 @@
 
                                 <ul class="wsus__button_area">
                                     <li><button type="submit" class="add_cart">add to cart</button></li>
-                                    <li><a class="buy_now" href="#">buy now</a></li>
+                                    <li><a class="buy_now" href="">buy now</a></li>
                                     <li><a href="#"><i class="fal fa-heart"></i></a></li>
                                     <li><a href="#"><i class="far fa-random"></i></a></li>
                                 </ul>
@@ -753,13 +753,27 @@
                     data: formData,
                     url: "{{ route('add-to-cart') }}",
                     success: function(data) {
+                        getCartCount();
                         toastr.success(data.message);
                     },
                     error: function(data) {
 
                     }
-                })
+                });
             });
+
+            function getCartCount() {
+                $.ajax({
+                    method: 'GET',
+                    url: "{{ route('cart-count') }}",
+                    success: function(data) {
+                        $('#cart-count').text(data);
+                    },
+                    error: function(data) {
+
+                    }
+                });
+            }
         });
     </script>
 @endpush

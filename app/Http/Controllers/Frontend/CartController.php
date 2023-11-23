@@ -99,7 +99,12 @@ class CartController extends Controller
         Cart::remove($rowId);
 
         toastr('Cart Item Remove Successfully!', 'success');
-        
+
         return redirect()->back();
+    }
+
+    public function getCartCount()
+    {
+        return Cart::content()->count();
     }
 }

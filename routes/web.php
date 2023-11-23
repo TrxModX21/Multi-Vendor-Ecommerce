@@ -44,6 +44,8 @@ Route::get('cart-details', [CartController::class, 'cartDetails'])->name('cart-d
 Route::post('cart/update-qty', [CartController::class, 'updateProductQuantity'])->name('cart.update-qty');
 Route::get('clear-cart', [CartController::class, 'clearCart'])->name('clear-cart');
 Route::get('cart/remove-product/{rowId}', [CartController::class, 'removeCartItem'])->name('cart.remove-product');
+Route::get('cart-count', [CartController::class, 'getCartCount'])->name('cart-count');
+
 
 Route::group([
     'middleware' => ['auth', 'verified'],
