@@ -39,7 +39,7 @@
                          <li><a href="compare.html"><i class="fal fa-random"></i><span>03</span></a></li>
 
                          <li>
-                             <a class="wsus__cart_icon" href="#">
+                             <a class="wsus__cart_icon" href="javascrip:;">
                                  <i class="fal fa-shopping-bag"></i>
                                  <span id="cart-count">{{ Cart::content()->count() }}</span>
                              </a>
@@ -55,7 +55,7 @@
      {{-- MINI CART SIDEBAR --}}
      <div class="wsus__mini_cart">
          <h4>shopping cart <span class="wsus_close_mini_cart"><i class="far fa-times"></i></span></h4>
-         <ul>
+         <ul class="mini-cart-wrapper">
              {{-- <li>
                  <div class="wsus__cart_img">
                      <a href="#"><img src="{{ asset('frontend/images/tab_2.jpg') }}" alt="product"
@@ -99,6 +99,5 @@
          </div>
      </div>
      {{-- MINI CART SIDEBAR --}}
-
 
  </header>

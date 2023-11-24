@@ -754,6 +754,7 @@
                     url: "{{ route('add-to-cart') }}",
                     success: function(data) {
                         getCartCount();
+                        fetchSidebarCartProducts();
                         toastr.success(data.message);
                     },
                     error: function(data) {
@@ -768,6 +769,40 @@
                     url: "{{ route('cart-count') }}",
                     success: function(data) {
                         $('#cart-count').text(data);
+                    },
+                    error: function(data) {
+
+                    }
+                });
+            }
+
+            function fetchSidebarCartProducts() {
+                $.ajax({
+                    method: 'GET',
+                    url: "{{ route('cart-products') }}",
+                    success: function(data) {
+                        $('.mini-cart-wrapper').html("");
+
+                        var html = '';
+
+                        for (let item in data) {
+                            let product = data[item];
+
+                            html += `<li>
+                                        <div class="wsus__cart_img">
+                                            <a href="{{ url('product-detail') }}/${product.options.slug}"><img src="{{ asset('/') }}${product.options.image}" alt="product"
+                                                    class="img-fluid w-100"></a>
+                                            <a class="wsis__del_icon" href=""><i class="fas fa-minus-circle"></i></a>
+                                        </div>
+                                        <div class="wsus__cart_text">
+                                            <a class="wsus__cart_title" href="{{ url('product-detail') }}/${product.options.slug}">${product.name}</a>
+                                            <p>{{ $settings->currency_icon }} ${product.price}</p>
+                                        </div>
+                                    </li>                            
+                            `;
+                        }
+
+                        $('.mini-cart-wrapper').html(html);
                     },
                     error: function(data) {
 

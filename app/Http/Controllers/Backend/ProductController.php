@@ -52,7 +52,7 @@ class ProductController extends Controller
             'qty' => ['required'],
             'short_description' => ['required', 'max:600'],
             'long_description' => ['required'],
-            'video_link' => ['url'],
+            'video_link' => ['nullable', 'url'],
             'seo_title' => ['max:200'],
             'seo_description' => ['max:250'],
             'status' => ['required']
@@ -128,7 +128,7 @@ class ProductController extends Controller
             'qty' => ['required'],
             'short_description' => ['required', 'max:600'],
             'long_description' => ['required'],
-            'video_link' => ['url'],
+            'video_link' => ['nullable', 'url'],
             'seo_title' => ['max:200'],
             'seo_description' => ['max:250'],
             'status' => ['required']
@@ -155,7 +155,7 @@ class ProductController extends Controller
         $product->offer_start_date = $request->offer_start_date;
         $product->offer_end_date = $request->offer_end_date;
         $product->product_type = $request->product_type;
-        $product->status = $request->status;        
+        $product->status = $request->status;
         $product->seo_title = $request->seo_title;
         $product->seo_description = $request->seo_description;
 
