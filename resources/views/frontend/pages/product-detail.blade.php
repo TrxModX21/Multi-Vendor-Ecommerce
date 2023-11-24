@@ -788,11 +788,11 @@
                         for (let item in data) {
                             let product = data[item];
 
-                            html += `<li>
+                            html += `<li id="mini_cart_${product.rowId}">
                                         <div class="wsus__cart_img">
                                             <a href="{{ url('product-detail') }}/${product.options.slug}"><img src="{{ asset('/') }}${product.options.image}" alt="product"
                                                     class="img-fluid w-100"></a>
-                                            <a class="wsis__del_icon" href=""><i class="fas fa-minus-circle"></i></a>
+                                            <a class="wsis__del_icon remove-sidebar-product" data-id="${product.rowId}" href=""><i class="fas fa-minus-circle"></i></a>
                                         </div>
                                         <div class="wsus__cart_text">
                                             <a class="wsus__cart_title" href="{{ url('product-detail') }}/${product.options.slug}">${product.name}</a>
@@ -809,6 +809,31 @@
                     }
                 });
             }
+
+            $('body').on('click', '.remove-sidebar-product', function(e) {
+                e.preventDefault();
+
+                let rowId = $(this).data('id');
+
+                $.ajax({
+                    method: 'POST',
+                    url: "{{ route('cart.remove-sidebar-product') }}",
+                    data: {
+                        rowId
+                    },
+                    success: function(data) {
+                        let productId = `#mini_cart_${rowId}`;
+
+                        $(productId).remove();
+                        getCartCount();
+
+                        toastr.success(data.message);
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    }
+                });
+            });
         });
     </script>
 @endpush

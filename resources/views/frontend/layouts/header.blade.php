@@ -56,27 +56,16 @@
      <div class="wsus__mini_cart">
          <h4>shopping cart <span class="wsus_close_mini_cart"><i class="far fa-times"></i></span></h4>
          <ul class="mini-cart-wrapper">
-             {{-- <li>
-                 <div class="wsus__cart_img">
-                     <a href="#"><img src="{{ asset('frontend/images/tab_2.jpg') }}" alt="product"
-                             class="img-fluid w-100"></a>
-                     <a class="wsis__del_icon" href="#"><i class="fas fa-minus-circle"></i></a>
-                 </div>
-                 <div class="wsus__cart_text">
-                     <a class="wsus__cart_title" href="#">apple 9.5" 7 serise tab with full view display</a>
-                     <p>$140 <del>$150</del></p>
-                 </div>
-             </li> --}}
 
              @foreach (Cart::content() as $sidebarItemCart)
-                 <li>
+                 <li id="mini_cart_{{ $sidebarItemCart->rowId }}">
                      <div class="wsus__cart_img">
                          <a href="">
                              <img src="{{ asset($sidebarItemCart->options->image) }}" alt="{{ $sidebarItemCart->name }}"
                                  class="img-fluid w-100">
                          </a>
-                         <a class="wsis__del_icon remove-sidebar-product" data-rowId="{{ $sidebarItemCart->rowId }}"
-                             href="#">
+                         <a class="wsis__del_icon remove-sidebar-product" data-id="{{ $sidebarItemCart->rowId }}"
+                             href="javascript:;">
                              <i class="fas fa-minus-circle"></i>
                          </a>
                      </div>
