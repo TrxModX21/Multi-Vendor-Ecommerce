@@ -84,6 +84,17 @@ class CartController extends Controller
         return $total;
     }
 
+    public function cartTotal()
+    {
+        $total = 0;
+
+        foreach (Cart::content() as $product) {
+            $total += $this->getProductTotal($product->rowId);
+        }
+
+        return $total;
+    }
+
     public function clearCart()
     {
         Cart::destroy();

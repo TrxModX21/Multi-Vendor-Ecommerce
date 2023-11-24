@@ -55,8 +55,8 @@
      {{-- MINI CART SIDEBAR --}}
      <div class="wsus__mini_cart">
          <h4>shopping cart <span class="wsus_close_mini_cart"><i class="far fa-times"></i></span></h4>
-         <ul class="mini-cart-wrapper">
 
+         <ul class="mini-cart-wrapper">
              @foreach (Cart::content() as $sidebarItemCart)
                  <li id="mini_cart_{{ $sidebarItemCart->rowId }}">
                      <div class="wsus__cart_img">
@@ -74,17 +74,27 @@
                          <a class="wsus__cart_title"
                              href="{{ route('product-detail', $sidebarItemCart->options->slug) }}">{!! $sidebarItemCart->name !!}</a>
                          <p>{{ $settings->currency_icon }} {{ $sidebarItemCart->price }}</p>
+                         <small>Variants total: {{ $settings->currency_icon }}
+                             {{ $sidebarItemCart->options->variantsTotal }}</small>
+                         <br />
+                         <small>Qty: {{ $sidebarItemCart->qty }}</small>
                      </div>
                  </li>
              @endforeach
 
+             @if (Cart::content()->count() === 0)
+                 <li class='text-center'>Cart Is Empty!</li>
+             @endif
          </ul>
 
-         <h5>sub total <span>$3540</span></h5>
+         <div class="mini_cart_actions {{ Cart::content()->count() === 0 ? 'd-none' : '' }}">
+             <h5>sub total <span id="mini_cart_subtotal">{{ $settings->currency_icon }} {{ getCartTotal() }}</span>
+             </h5>
 
-         <div class="wsus__minicart_btn_area">
-             <a class="common_btn" href="{{ route('cart-details') }}">view cart</a>
-             <a class="common_btn" href="check_out.html">checkout</a>
+             <div class="wsus__minicart_btn_area">
+                 <a class="common_btn" href="{{ route('cart-details') }}">view cart</a>
+                 <a class="common_btn" href="check_out.html">checkout</a>
+             </div>
          </div>
      </div>
      {{-- MINI CART SIDEBAR --}}
