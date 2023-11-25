@@ -27,6 +27,7 @@
 
     {{-- CART SECTION --}}
     @if (count($cartItems) == 0)
+        {{-- CART EMPTY SECTION --}}
         <section id="wsus__cart_view">
             <div class="container">
                 <div class="row">
@@ -40,7 +41,9 @@
                 </div>
             </div>
         </section>
+        {{-- CART EMPTY SECTION --}}
     @else
+        {{-- CART HAVE PRODUCT SECTION --}}
         <section id="wsus__cart_view">
             <div class="container">
                 <div class="row">
@@ -144,6 +147,7 @@
                 </div>
             </div>
         </section>
+        {{-- CART HAVE PRODUCT SECTION --}}
     @endif
 
     {{-- CART SECTION --}}
