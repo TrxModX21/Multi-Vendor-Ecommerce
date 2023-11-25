@@ -93,7 +93,25 @@
                             {{-- PRICE --}}
 
                             {{-- ADD TO CART BUTTON --}}
-                            <a class="add_cart" href="">add to cart</a>
+                            <form class="shopping-cart-form">
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+
+                                @foreach ($product->variants as $variant)
+                                    <select class="d-none" name="variant_items[]">
+                                        @foreach ($variant->productVariantItems as $variantItem)
+                                            <option value="{{ $variantItem->id }}"
+                                                {{ $variantItem->is_default == 1 ? 'selected' : '' }}>
+                                                {{ $variantItem->name }}
+                                                ({{ $settings->currency_icon . ' ' . $variantItem->price }})
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                @endforeach
+
+                                <input name="qty" type="hidden" value="1" />
+
+                                <button type="submit" class="add_cart">add to cart</button>
+                            </form>
                             {{-- ADD TO CART BUTTON --}}
 
                         </div>
