@@ -118,8 +118,6 @@
         });
 
         function getSidebarCartSubtotal() {
-            mini_cart_subtotal
-
             $.ajax({
                 method: 'GET',
                 url: "{{ route('cart.sidebar-product-total') }}",
@@ -130,6 +128,6 @@
 
                 }
             });
-        }
+        }        
     });
 </script>

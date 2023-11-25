@@ -10,6 +10,17 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartController extends Controller
 {
+    public function cartDetails()
+    {
+        $cartItems = Cart::content();
+
+        if (count($cartItems) === 0) {
+            return redirect()->route('home');
+        }
+
+        return view('frontend.pages.cart-detail', compact('cartItems'));
+    }
+
     public function addToCart(Request $request)
     {
         $product = Product::findOrFail($request->product_id);
@@ -65,13 +76,6 @@ class CartController extends Controller
             'status' => 'success',
             'message' => 'Added to cart successfully!'
         ]);
-    }
-
-    public function cartDetails()
-    {
-        $cartItems = Cart::content();
-
-        return view('frontend.pages.cart-detail', compact('cartItems'));
     }
 
     public function updateProductQuantity(Request $request)

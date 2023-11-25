@@ -127,10 +127,12 @@
                         </div>
                     </div>
 
+                    {{-- CART SUMMARY --}}
                     <div class="col-xl-3">
                         <div class="wsus__cart_list_footer_button" id="sticky_sidebar">
                             <h6>total cart</h6>
-                            <p>subtotal: <span>$124.00</span></p>
+                            <p>subtotal: <span id="sub_total">{{ $settings->currency_icon }} {{ getCartTotal() }}</span>
+                            </p>
                             <p>delivery: <span>$00.00</span></p>
                             <p>discount: <span>$10.00</span></p>
                             <p class="total"><span>total:</span> <span>$134.00</span></p>
@@ -144,6 +146,8 @@
                                     class="fab fa-shopify"></i> go shop</a>
                         </div>
                     </div>
+                    {{-- CART SUMMARY --}}
+
                 </div>
             </div>
         </section>
@@ -159,7 +163,8 @@
                 <div class="col-xl-6 col-lg-6">
                     <div class="wsus__single_banner_content">
                         <div class="wsus__single_banner_img">
-                            <img src="images/single_banner_2.jpg" alt="banner" class="img-fluid w-100">
+                            <img src="{{ asset('frontend/images/single_banner_2.jpg') }}" alt="banner"
+                                class="img-fluid w-100">
                         </div>
                         <div class="wsus__single_banner_text">
                             <h6>sell on <span>35% off</span></h6>
@@ -171,7 +176,8 @@
                 <div class="col-xl-6 col-lg-6">
                     <div class="wsus__single_banner_content single_banner_2">
                         <div class="wsus__single_banner_img">
-                            <img src="images/single_banner_3.jpg" alt="banner" class="img-fluid w-100">
+                            <img src="{{ asset('frontend/images/single_banner_3.jpg') }}" alt="banner"
+                                class="img-fluid w-100">
                         </div>
                         <div class="wsus__single_banner_text">
                             <h6>New Collection</h6>
@@ -212,9 +218,10 @@
                     success: function(data) {
                         if (data.status === 'success') {
                             let productId = '#' + rowId;
-                            let totalAmount = "{{ $settings->currency_icon }}" + data
+                            let totalAmount = "{{ $settings->currency_icon }}" + " " + data
                                 .product_total;
                             $(productId).text(totalAmount);
+                            renderCartSubTotal();
 
                             toastr.success(data.message);
                         } else if (data.status == 'error') {
@@ -249,9 +256,10 @@
                     success: function(data) {
                         if (data.status === 'success') {
                             let productId = '#' + rowId;
-                            let totalAmount = "{{ $settings->currency_icon }}" + data
+                            let totalAmount = "{{ $settings->currency_icon }}" + " " + data
                                 .product_total;
                             $(productId).text(totalAmount);
+                            renderCartSubTotal();
 
                             toastr.success(data.message);
                         } else if (data.status == 'error') {
@@ -310,6 +318,19 @@
                     }
                 });
             });
+
+            function renderCartSubTotal() {
+                $.ajax({
+                    method: 'GET',
+                    url: "{{ route('cart.sidebar-product-total') }}",
+                    success: function(data) {
+                        $('#sub_total').text("{{ $settings->currency_icon }}" + " " + data);
+                    },
+                    error: function(data) {
+
+                    }
+                });
+            }
         });
     </script>
 @endpush
