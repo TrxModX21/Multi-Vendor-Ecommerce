@@ -217,6 +217,8 @@
                             $(productId).text(totalAmount);
 
                             toastr.success(data.message);
+                        } else if (data.status == 'error') {
+                            toastr.error(data.message);
                         }
                     },
                     error: function(data) {
@@ -252,6 +254,8 @@
                             $(productId).text(totalAmount);
 
                             toastr.success(data.message);
+                        } else if (data.status == 'error') {
+                            toastr.error(data.message);
                         }
                     },
                     error: function(data) {
