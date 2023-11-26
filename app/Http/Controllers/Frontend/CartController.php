@@ -17,6 +17,7 @@ class CartController extends Controller
         $cartItems = Cart::content();
 
         if (count($cartItems) === 0) {
+            Session::forget('coupon');
             return redirect()->route('home');
         }
 
@@ -249,6 +250,13 @@ class CartController extends Controller
                     'cart_total' => $total
                 ]);
             }
+        } else {
+            $total = getCartTotal();
+            return response([
+                'status' => 'success',
+                'discount' => 0,
+                'cart_total' => $total
+            ]);
         }
     }
 }
