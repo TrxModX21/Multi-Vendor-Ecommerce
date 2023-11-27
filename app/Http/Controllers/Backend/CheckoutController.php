@@ -15,4 +15,36 @@ class CheckoutController extends Controller
 
         return view('frontend.pages.checkout', compact('addresses'));
     }
+
+    public function createAddress(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'max:200'],
+            'phone' => ['required', 'max:50'],
+            'email' => ['required', 'max:200', 'email'],
+            'country' => ['required', 'max:200'],
+            'state' => ['required', 'max:200'],
+            'city' => ['required', 'max:200'],
+            'zip' => ['required', 'max:200'],
+            'address' => ['required'],
+        ]);
+
+        $userAddress = new UserAddress();
+
+        $userAddress->user_id = Auth::user()->id;
+        $userAddress->name = $request->name;
+        $userAddress->phone = $request->phone;
+        $userAddress->email = $request->email;
+        $userAddress->country = $request->country;
+        $userAddress->state = $request->state;
+        $userAddress->city = $request->city;
+        $userAddress->zip = $request->zip;
+        $userAddress->address = $request->address;
+
+        $userAddress->save();
+
+        toastr('Address Created Successfully', 'success');
+
+        return redirect()->route('user.checkout.index');
+    }
 }

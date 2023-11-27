@@ -75,4 +75,5 @@ Route::group([
 
     /** CHECKOUT ROUTES */
     Route::get('checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::post('checkout/address-create', [CheckoutController::class, 'createAddress'])->name('checkout.address.create');
 });
