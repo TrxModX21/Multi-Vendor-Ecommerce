@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\CheckoutController;
 use App\Http\Controllers\Backend\RootController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\FlashSaleController;
@@ -69,6 +70,9 @@ Route::group([
     Route::post('/profile', [UserProfileController::class, 'updatePassword'])
         ->name('profile.update.password');
 
-    /** USER ADRESS ROUTE */
+    /** USER ADRESS ROUTES */
     Route::resource('address', UserAddressController::class);
+
+    /** CHECKOUT ROUTES */
+    Route::get('checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 });
