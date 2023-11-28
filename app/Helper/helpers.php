@@ -105,3 +105,19 @@ function getCartDiscount()
         return 0;
     }
 }
+
+/** GET SELECTED SHIPPING FEE FROM SESSION */
+function getShippingFee()
+{
+    if (Session::has('shipping_method')) {
+        return Session::get('shipping_method')['cost'];
+    } else {
+        return 0;
+    }
+}
+
+/** GET PAYABLE AMOUNT */
+function getFinalPayableAmount()
+{
+    return getMainCartTotal() + getShippingFee();
+}
