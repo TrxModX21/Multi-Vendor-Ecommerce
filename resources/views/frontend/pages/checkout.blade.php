@@ -262,6 +262,7 @@
                         success: function(data) {
                             if (data.status === 'success') {
                                 $('#submitCheckoutForm').html('Success... redirecting');
+                                window.location.href = data.redirect_url;
                             }
                         },
                         error: function(data) {}

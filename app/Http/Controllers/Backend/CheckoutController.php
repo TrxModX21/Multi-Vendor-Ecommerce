@@ -61,17 +61,22 @@ class CheckoutController extends Controller
         $shippingMethod = ShippingRule::findOrFail($request->shipping_method_id);
         $address = UserAddress::findOrFail($request->shipping_address_id)->toArray();
 
-        Session::put('shipping_method', [
-            'id' => $shippingMethod->id,
-            'name' => $shippingMethod->name,
-            'type' => $shippingMethod->type,
-            'cost' => $shippingMethod->cost,
-        ]);
+        if ($shippingMethod) {
+            Session::put('shipping_method', [
+                'id' => $shippingMethod->id,
+                'name' => $shippingMethod->name,
+                'type' => $shippingMethod->type,
+                'cost' => $shippingMethod->cost,
+            ]);
+        }
 
-        Session::put('address', $address);
+        if ($address) {
+            Session::put('address', $address);
+        }
 
         return response([
             'status' => 'success',
+            'redirect_url' => route('user.payment'),
         ]);
     }
 }
