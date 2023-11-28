@@ -26,98 +26,97 @@
     {{-- MAIN CARD CHECKOUT CONTENT --}}
     <section id="wsus__cart_view">
         <div class="container">
-            <form class="wsus__checkout_form">
-                <div class="row">
-                    <div class="col-xl-8 col-lg-7">
-                        <div class="wsus__check_form">
-                            <h5>Billing Details <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">add
-                                    new address</a></h5>
+            <div class="row">
+                <div class="col-xl-8 col-lg-7">
+                    <div class="wsus__check_form">
+                        <h5>Billing Details <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">add
+                                new address</a></h5>
 
-                            {{-- ADDRESS CARD --}}
-                            <div class="row">
-                                @foreach ($addresses as $address)
-                                    <div class="col-xl-6">
-                                        <div class="wsus__checkout_single_address">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                    id="flexRadioDefault1" checked>
-                                                <label class="form-check-label" for="flexRadioDefault1">
-                                                    Select Address
-                                                </label>
-                                            </div>
-                                            <ul>
-                                                <li><span>Name :</span> {{ $address->name }}</li>
-                                                <li><span>Phone :</span> {{ $address->phone }}</li>
-                                                <li><span>Email :</span> {{ $address->email }}</li>
-                                                <li><span>Country :</span> {{ $address->country }}</li>
-                                                <li><span>City :</span> {{ $address->city }}</li>
-                                                <li><span>Zip Code :</span> {{ $address->zip }}</li>
-                                                <li><span>Address :</span> {{ $address->address }}</li>
-                                            </ul>
+                        {{-- ADDRESS CARD --}}
+                        <div class="row">
+                            @foreach ($addresses as $address)
+                                <div class="col-xl-6">
+                                    <div class="wsus__checkout_single_address">
+                                        <div class="form-check">
+                                            <input class="form-check-input shipping_address" data-id="{{ $address->id }}"
+                                                type="radio" name="flexRadioDefault" id="addressId-{{ $address->id }}"
+                                                checked>
+                                            <label class="form-check-label" for="addressId-{{ $address->id }}">
+                                                Select Address
+                                            </label>
                                         </div>
+                                        <ul>
+                                            <li><span>Name :</span> {{ $address->name }}</li>
+                                            <li><span>Phone :</span> {{ $address->phone }}</li>
+                                            <li><span>Email :</span> {{ $address->email }}</li>
+                                            <li><span>Country :</span> {{ $address->country }}</li>
+                                            <li><span>City :</span> {{ $address->city }}</li>
+                                            <li><span>Zip Code :</span> {{ $address->zip }}</li>
+                                            <li><span>Address :</span> {{ $address->address }}</li>
+                                        </ul>
                                     </div>
-                                @endforeach
-                            </div>
-                            {{-- ADDRESS CARD --}}
-                        </div>
-                    </div>
-
-                    {{-- CHECKOUT SUMMARY --}}
-                    <div class="col-xl-4 col-lg-5">
-                        <div class="wsus__order_details" id="sticky_sidebar">
-                            <p class="wsus__product">shipping Methods</p>
-
-                            @foreach ($shippingMethods as $method)
-                                @if ($method->type === 'min_cost' && getCartTotal() >= $method->min_cost)
-                                    <div class="form-check">
-                                        <input class="form-check-input shipping-method" type="radio" name="exampleRadios"
-                                            id="method-{{ $method->id }}" value="{{ $method->id }}"
-                                            data-id="{{ $method->cost }}">
-                                        <label class="form-check-label" for="method-{{ $method->id }}">
-                                            {{ $method->name }}
-                                            <span>cost: {{ $settings->currency_icon }} {{ $method->cost }} </span>
-                                        </label>
-                                    </div>
-                                @elseif($method->type === 'flat_cost')
-                                    <div class="form-check">
-                                        <input class="form-check-input shipping-method" type="radio" name="exampleRadios"
-                                            id="method-{{ $method->id }}" value="{{ $method->id }}"
-                                            data-id="{{ $method->cost }}">
-                                        <label class="form-check-label" for="method-{{ $method->id }}">
-                                            {{ $method->name }}
-                                            <span>cost: {{ $settings->currency_icon }} {{ $method->cost }} </span>
-                                        </label>
-                                    </div>
-                                @endif
+                                </div>
                             @endforeach
+                        </div>
+                        {{-- ADDRESS CARD --}}
+                    </div>
+                </div>
 
-                            <div class="wsus__order_details_summery">
-                                <p>subtotal: <span>{{ $settings->currency_icon }} {{ getCartTotal() }}</span></p>
-                                <p>shipping fee(+): <span id="shipping_fee">{{ $settings->currency_icon }} 0</span></p>
-                                <p>coupon(-): <span>{{ $settings->currency_icon }} {{ getCartDiscount() }}</span></p>
-                                <p><b>total:</b> <span><b id="total_amount"
-                                            data-id='{{ getMainCartTotal() }}'>{{ $settings->currency_icon }}
-                                            {{ getMainCartTotal() }}</b></span></p>
-                            </div>
-                            <div class="terms_area">
+                {{-- CHECKOUT SUMMARY --}}
+                <div class="col-xl-4 col-lg-5">
+                    <div class="wsus__order_details" id="sticky_sidebar">
+                        <p class="wsus__product">shipping Methods</p>
+
+                        @foreach ($shippingMethods as $method)
+                            @if ($method->type === 'min_cost' && getCartTotal() >= $method->min_cost)
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3"
-                                        checked>
-                                    <label class="form-check-label" for="flexCheckChecked3">
-                                        I have read and agree to the website <a href="#">terms and conditions *</a>
+                                    <input class="form-check-input shipping-method" type="radio" name="exampleRadios"
+                                        id="method-{{ $method->id }}" value="{{ $method->id }}"
+                                        data-id="{{ $method->cost }}">
+                                    <label class="form-check-label" for="method-{{ $method->id }}">
+                                        {{ $method->name }}
+                                        <span>cost: {{ $settings->currency_icon }} {{ $method->cost }} </span>
                                     </label>
                                 </div>
-                            </div>
-                            <form action="" id="checkOutForm">
-                                <input type="hidden" id="shipping-method-id" name="shipping_method_id" value="">
-                                <input type="hidden" name="shipping_address_id" value="">
-                            </form>
-                            <a href="payment.html" class="common_btn">Place Order</a>
+                            @elseif($method->type === 'flat_cost')
+                                <div class="form-check">
+                                    <input class="form-check-input shipping-method" type="radio" name="exampleRadios"
+                                        id="method-{{ $method->id }}" value="{{ $method->id }}"
+                                        data-id="{{ $method->cost }}">
+                                    <label class="form-check-label" for="method-{{ $method->id }}">
+                                        {{ $method->name }}
+                                        <span>cost: {{ $settings->currency_icon }} {{ $method->cost }} </span>
+                                    </label>
+                                </div>
+                            @endif
+                        @endforeach
+
+                        <div class="wsus__order_details_summery">
+                            <p>subtotal: <span>{{ $settings->currency_icon }} {{ getCartTotal() }}</span></p>
+                            <p>shipping fee(+): <span id="shipping_fee">{{ $settings->currency_icon }} 0</span></p>
+                            <p>coupon(-): <span>{{ $settings->currency_icon }} {{ getCartDiscount() }}</span></p>
+                            <p><b>total:</b> <span><b id="total_amount"
+                                        data-id='{{ getMainCartTotal() }}'>{{ $settings->currency_icon }}
+                                        {{ getMainCartTotal() }}</b></span></p>
                         </div>
+                        <div class="terms_area">
+                            <div class="form-check">
+                                <input class="form-check-input agree_term" type="checkbox" value=""
+                                    id="flexCheckChecked3">
+                                <label class="form-check-label" for="flexCheckChecked3">
+                                    I have read and agree to the website <a href="#">terms and conditions *</a>
+                                </label>
+                            </div>
+                        </div>
+                        <form action="" id="checkOutForm">
+                            <input type="hidden" id="shipping_method_id" name="shipping_method_id" value="">
+                            <input type="hidden" id="shipping_address_id" name="shipping_address_id" value="">
+                        </form>
+                        <a href="" id="submitCheckoutForm" class="common_btn">Place Order</a>
                     </div>
-                    {{-- CHECKOUT SUMMARY --}}
                 </div>
-            </form>
+                {{-- CHECKOUT SUMMARY --}}
+            </div>
         </div>
     </section>
     {{-- MAIN CARD CHECKOUT CONTENT --}}
@@ -218,15 +217,58 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('input[type="radio"]').prop('checked', false);
+            $('#shipping_method_id').val("");
+            $('#shipping_address_id').val("");
+
             $('.shipping-method').on('click', function() {
                 let shippingFee = $(this).data('id');
                 let currentTotalAmount = $('#total_amount').data('id');
                 let totalAmount = currentTotalAmount + shippingFee;
 
-                $('#shipping-method-id').val($(this).val());
+                $('#shipping_method_id').val($(this).val());
                 $('#shipping_fee').text("{{ $settings->currency_icon }}" + " " + shippingFee);
                 $('#total_amount').text("{{ $settings->currency_icon }}" + " " + totalAmount)
-            })
+            });
+
+            $('.shipping_address').on('click', function() {
+                $('#shipping_address_id').val($(this).data('id'));
+            });
+
+            $('#submitCheckoutForm').on('click', function(e) {
+                e.preventDefault();
+
+                if ($('#shipping_method_id').val() == "") {
+                    toastr.error('Shipping method is required!');
+                } else if ($('#shipping_address_id').val() == "") {
+                    toastr.error('Shipping address is required!');
+                } else if (!$('.agree_term').prop('checked')) {
+                    toastr.error('You have to agree website terms and conditions!');
+                } else {
+                    $.ajax({
+                        url: "{{ route('user.checkout.form-submit') }}",
+                        method: 'POST',
+                        data: $('#checkOutForm').serialize(),
+                        beforeSend: function() {
+                            $('#submitCheckoutForm').html(
+                                '<i class="fas fa-spinner fa-spin fa-1x"></i>');
+                        },
+                        success: function(data) {
+                            if (data.status === 'success') {
+                                $('#submitCheckoutForm').html('Success... redirecting');
+                            }
+                        },
+                        error: function(data) {}
+                    });
+                }
+
+            });
         });
     </script>
 @endpush

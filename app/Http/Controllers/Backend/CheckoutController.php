@@ -7,6 +7,7 @@ use App\Models\ShippingRule;
 use App\Models\UserAddress;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class CheckoutController extends Controller
 {
@@ -48,5 +49,29 @@ class CheckoutController extends Controller
         toastr('Address Created Successfully', 'success');
 
         return redirect()->route('user.checkout.index');
+    }
+
+    public function checkoutFormSubmit(Request $request)
+    {
+        $request->validate([
+            'shipping_method_id' => ['required', 'integer'],
+            'shipping_address_id' => ['required', 'integer'],
+        ]);
+
+        $shippingMethod = ShippingRule::findOrFail($request->shipping_method_id);
+        $address = UserAddress::findOrFail($request->shipping_address_id)->toArray();
+
+        Session::put('shipping_method', [
+            'id' => $shippingMethod->id,
+            'name' => $shippingMethod->name,
+            'type' => $shippingMethod->type,
+            'cost' => $shippingMethod->cost,
+        ]);
+
+        Session::put('address', $address);
+
+        return response([
+            'status' => 'success',
+        ]);
     }
 }
