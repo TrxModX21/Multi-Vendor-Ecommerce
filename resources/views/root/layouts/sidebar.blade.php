@@ -63,7 +63,7 @@
 
             {{-- MANAGE ECOMERCE START --}}
             <li
-                class="dropdown {{ setActive(['root.vendor-profile.*', 'root.flash-sale.*', 'root.coupons.*', 'root.shipping-rule.*']) }}">
+                class="dropdown {{ setActive(['root.vendor-profile.*', 'root.flash-sale.*', 'root.coupons.*', 'root.shipping-rule.*', 'root.payment-setting.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                     <i class="fas fa-columns"></i>
                     <span>E-Comerce</span>
@@ -80,6 +80,9 @@
                     </li>
                     <li class="{{ setActive(['root.vendor-profile.*']) }}">
                         <a class="nav-link" href="{{ route('root.vendor-profile.index') }}">Vendor Profile</a>
+                    </li>
+                    <li class="{{ setActive(['root.payment-setting.*']) }}">
+                        <a class="nav-link" href="{{ route('root.payment-setting.index') }}">Payment Settings</a>
                     </li>
                 </ul>
             </li>
