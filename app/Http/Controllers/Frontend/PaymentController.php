@@ -18,6 +18,11 @@ class PaymentController extends Controller
         return view('frontend.pages.payment');
     }
 
+    public function paymentSuccess()
+    {
+        return view('frontend.pages.payment-success');
+    }
+
     public function paypalConfig()
     {
         $paypalSetting = PaypalSetting::first();
@@ -50,8 +55,9 @@ class PaymentController extends Controller
     {
         $paypalSetting = PaypalSetting::first();
         $config = $this->paypalConfig();
+
         $provider = new PayPalClient($config);
-        // $provider->setApiCredentials($config);
+        $provider->getAccessToken();
 
         /** CALCULATE PAYABLE AMOUNT DEPENDING ON CURRENCY RATE */
         $total = getFinalPayableAmount();
@@ -73,6 +79,37 @@ class PaymentController extends Controller
             ],
         ]);
 
-        dd($response);
+        if (isset($response['id']) && $response['id'] != null) {
+            foreach ($response['links'] as $link) {
+                if ($link['rel'] === 'approve') {
+                    return redirect()->away($link['href']);
+                }
+            }
+        } else {
+            return redirect()->route('user.paypal.cancel');
+        }
+    }
+
+    public function paypalSuccess(Request $request)
+    {
+        $config = $this->paypalConfig();
+
+        $provider = new PayPalClient($config);
+        $provider->getAccessToken();
+
+        $response = $provider->capturePaymentOrder($request->token);
+
+        if (isset($response['status']) && $response['status'] == 'COMPLETED') {
+            return redirect()->route('user.payment-success');
+        }
+
+        return redirect()->route('user.paypal.cancel');
+    }
+
+    public function paypalCancel()
+    {
+        toastr('Payment Failed', 'error');
+
+        return redirect()->route('user.payment');
     }
 }

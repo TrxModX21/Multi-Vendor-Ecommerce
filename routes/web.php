@@ -81,6 +81,7 @@ Route::group([
 
     /** PAYMENT ROUTES */
     Route::get('payment', [PaymentController::class, 'index'])->name('payment');
+    Route::get('payment-success', [PaymentController::class, 'paymentSuccess'])->name('payment-success');
 
     /**PAYPAL */
     Route::get('paypal/payment', [PaymentController::class, 'payWithPaypal'])->name('paypal.payment');
