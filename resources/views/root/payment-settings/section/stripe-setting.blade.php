@@ -1,34 +1,34 @@
-<div class="tab-pane fade show active" id="list-paypal" role="tabpanel" aria-labelledby="list-paypal-list">
+<div class="tab-pane fade" id="list-stripe" role="tabpanel" aria-labelledby="list-stripe-list">
     <div class="card border">
         <div class="card-body">
-            <form action="{{ route('root.paypal-setting.update', 1) }}" method="POST">
+            <form action="{{ route('root.stripe-setting.update', 1) }}" method="POST">
                 @csrf
                 @method('PUT')
 
                 <div class="form-group">
-                    <label for="status">Paypal Status</label>
+                    <label for="status">Stripe Status</label>
                     <select name="status" id="status" class="form-control">
-                        <option {{ $paypalSetting->status === 1 ? 'selected' : '' }} value="1">Enable</option>
-                        <option {{ $paypalSetting->status === 0 ? 'selected' : '' }} value="0">Disable</option>
+                        <option {{ $stripeSetting->status === 1 ? 'selected' : '' }} value="1">Enable</option>
+                        <option {{ $stripeSetting->status === 0 ? 'selected' : '' }} value="0">Disable</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="account_mode">Account Mode</label>
                     <select name="account_mode" id="account_mode" class="form-control">
-                        <option {{ $paypalSetting->account_mode === 0 ? 'selected' : '' }} value="0">Sandbox
+                        <option {{ $stripeSetting->account_mode === 0 ? 'selected' : '' }} value="0">Sandbox
                         </option>
-                        <option {{ $paypalSetting->account_mode === 1 ? 'selected' : '' }} value="1">Live</option>
+                        <option {{ $stripeSetting->account_mode === 1 ? 'selected' : '' }} value="1">Live</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="country_name">Country Name</label>
-                    <select name="country_name" id="country_name" class="form-control select2">
+                    <select name="country_name" id="country_name" class="form-control select2" style="width: 100%">
                         <option value=""><---Select---></option>
 
                         @foreach (config('settings.country_list') as $country)
-                            <option {{ $paypalSetting->country_name === $country ? 'selected' : '' }}
+                            <option {{ $stripeSetting->country_name === $country ? 'selected' : '' }}
                                 value="{{ $country }}">{{ $country }}</option>
                         @endforeach
 
@@ -37,11 +37,11 @@
 
                 <div class="form-group">
                     <label for="currency">Currency Name</label>
-                    <select name="currency" id="currency" class="form-control select2">
+                    <select name="currency" id="currency" class="form-control select2" style="width: 100%">
                         <option value=""><---Select---></option>
 
                         @foreach (config('settings.currency_list') as $key => $currency)
-                            <option {{ $paypalSetting->currency === $currency ? 'selected' : '' }}
+                            <option {{ $stripeSetting->currency === $currency ? 'selected' : '' }}
                                 value="{{ $currency }}">{{ $key }}</option>
                         @endforeach
 
@@ -52,19 +52,19 @@
                     <label for="currency_rate">Currency Rate (Per /
                         {{ $settings->currency_icon }}~{{ $settings->currency }})</label>
                     <input type="text" name="currency_rate" id="currency_rate" class="form-control"
-                        value="{{ $paypalSetting->currency_rate }}" />
+                        value="{{ $stripeSetting->currency_rate }}" />
                 </div>
 
                 <div class="form-group">
-                    <label for="client_id">Paypal Client ID</label>
+                    <label for="client_id">Stripe Client ID</label>
                     <input type="text" name="client_id" id="client_id" class="form-control"
-                        value="{{ $paypalSetting->client_id }}" />
+                        value="{{ $stripeSetting->client_id }}" />
                 </div>
 
                 <div class="form-group">
-                    <label for="secret_key">Paypal Secret Key</label>
+                    <label for="secret_key">Stripe Secret Key</label>
                     <input type="text" name="secret_key" id="secret_key" class="form-control"
-                        value="{{ $paypalSetting->secret_key }}" />
+                        value="{{ $stripeSetting->secret_key }}" />
                 </div>
 
                 <button type="submit" class="btn btn-primary">Update</button>
