@@ -23,7 +23,7 @@ class OrderDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                $showBtn = "<a href='" . route('root.products.edit', $query->id) . "' class='btn btn-primary'><i class='far fa-eye'></i></a>";
+                $showBtn = "<a href='" . route('root.order.show', $query->id) . "' class='btn btn-primary'><i class='far fa-eye'></i></a>";
 
                 $deleteBtn = "<a href='" . route('root.products.destroy', $query->id) . "' class='btn btn-danger mx-2 delete-item'><i class='far fa-trash-alt'></i></a>";
 
@@ -44,8 +44,15 @@ class OrderDataTable extends DataTable
             ->addColumn('order_status', function ($query) {
                 return "<span class='badge bg-warning'>$query->order_status</span>";
             })
+            ->addColumn('payment_status', function ($query) {
+                if ($query->payment_status === 1) {
+                    return "<span class='badge bg-success'>complete</span>";
+                } else {
+                    return "<span class='badge bg-danger'>pending</span>";
+                }
+            })
             ->setRowId('id')
-            ->rawColumns(['action', 'customer', 'date', 'order_status']);
+            ->rawColumns(['action', 'customer', 'date', 'order_status', 'payment_status']);
     }
 
     /**
@@ -91,6 +98,7 @@ class OrderDataTable extends DataTable
             Column::make('product_qty'),
             Column::make('amount'),
             Column::make('order_status'),
+            Column::make('payment_status'),
             Column::make('payment_method'),
             Column::computed('action')
                 ->exportable(false)
