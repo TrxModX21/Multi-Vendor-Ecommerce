@@ -8,12 +8,15 @@ use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\PaypalSetting;
 use App\Models\Product;
+use App\Models\StripeSetting;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
+use Stripe\Charge;
+use Stripe\Stripe;
 
 class PaymentController extends Controller
 {
@@ -117,7 +120,7 @@ class PaymentController extends Controller
         return $config;
     }
 
-    /** PAYPAL REDIRECt */
+    /** PAYPAL PAYMENT */
     public function payWithPaypal(Request $request)
     {
         $paypalSetting = PaypalSetting::first();
@@ -189,4 +192,24 @@ class PaymentController extends Controller
 
         return redirect()->route('user.payment');
     }
+
+    /** STRIPE PAYMENT */
+    public function payWithStripe(Request $request)
+    {
+        $stripeSetting = StripeSetting::first();
+
+        /** CALCULATE PAYABLE AMOUNT DEPENDING ON CURRENCY RATE */
+        $total = getFinalPayableAmount();
+        $payableAmount = round($total * $stripeSetting->currency_rate, 2);
+
+        Stripe::setApiKey($stripeSetting->secret_key);
+
+        Charge::create([
+            'amount' => $payableAmount * 100,
+            'currency' => $stripeSetting->currency,
+            'source' => $request->stripe_token,
+            'description' => 'Payment Test',
+        ]);
+    }
+
 }
