@@ -22,8 +22,30 @@ class OrderDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'order.action')
-            ->setRowId('id');
+            ->addColumn('action', function ($query) {
+                $showBtn = "<a href='" . route('root.products.edit', $query->id) . "' class='btn btn-primary'><i class='far fa-eye'></i></a>";
+
+                $deleteBtn = "<a href='" . route('root.products.destroy', $query->id) . "' class='btn btn-danger mx-2 delete-item'><i class='far fa-trash-alt'></i></a>";
+
+                $statusBtn = "<a href='" . route('root.products.edit', $query->id) . "' class='btn btn-warning'><i class='fas fa-truck'></i></a>";
+
+
+                return $showBtn . $deleteBtn . $statusBtn;
+            })
+            ->addColumn('customer', function ($query) {
+                return $query->user->name;
+            })
+            ->addColumn('date', function ($query) {
+                return date('d-M-Y', strtotime($query->created_at));
+            })
+            ->addColumn('amount', function ($query) {
+                return $query->currency_icon . $query->amount;
+            })
+            ->addColumn('order_status', function ($query) {
+                return "<span class='badge bg-warning'>$query->order_status</span>";
+            })
+            ->setRowId('id')
+            ->rawColumns(['action', 'customer', 'date', 'order_status']);
     }
 
     /**
@@ -40,20 +62,20 @@ class OrderDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('order-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->setTableId('order-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(0)
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make('excel'),
+                Button::make('csv'),
+                Button::make('pdf'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload')
+            ]);
     }
 
     /**
@@ -62,15 +84,19 @@ class OrderDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
             Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('invoice_id'),
+            Column::make('customer'),
+            Column::make('date'),
+            Column::make('product_qty'),
+            Column::make('amount'),
+            Column::make('order_status'),
+            Column::make('payment_method'),
+            Column::computed('action')
+                ->exportable(false)
+                ->printable(false)
+                ->width(200)
+                ->addClass('text-center'),
         ];
     }
 
