@@ -40,7 +40,7 @@ class PaymentController extends Controller
 
         $order->invoice_id = rand(1, 999999);
         $order->user_id = Auth::user()->id;
-        $order->sub_total = getMainCartTotal();
+        $order->sub_total = getCartTotal();
         $order->amount = getFinalPayableAmount();
         $order->currency_name = $settings->currency;
         $order->currency_icon = $settings->currency_icon;

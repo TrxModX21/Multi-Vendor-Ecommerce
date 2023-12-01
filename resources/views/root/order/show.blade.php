@@ -87,7 +87,14 @@
                                         @endphp
                                         <tr>
                                             <td>{{ ++$loop->index }}</td>
-                                            <td>{{ $product->product_name }}</td>
+                                            @if (isset($product->product->slug))
+                                                <td>
+                                                    <a
+                                                        href="{{ route('product-detail', $product->product->slug) }}">{{ $product->product_name }}</a>
+                                                </td>
+                                            @else
+                                                <td>{{ $product->product_name }}</td>
+                                            @endif
                                             @if (!empty($variants))
                                                 <td>
                                                     @foreach ($variants as $key => $variant)
