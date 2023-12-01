@@ -7,7 +7,7 @@
 
                     <input type="hidden" name="stripe_token" id="stripe-token-id" value="">
 
-                    <div id="card-element" class="form-control"></div>
+                    <div id="card-element" class="form-control" style="padding: 18px;"></div>
                     <br />
                     <button class="nav-link common_btn" id="pay-btn" onclick="createToken()" type="button">Pay
                         With Stripe</button>

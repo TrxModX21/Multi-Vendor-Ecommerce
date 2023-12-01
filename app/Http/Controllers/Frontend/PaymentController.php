@@ -204,12 +204,25 @@ class PaymentController extends Controller
 
         Stripe::setApiKey($stripeSetting->secret_key);
 
-        Charge::create([
+        $response = Charge::create([
             'amount' => $payableAmount * 100,
             'currency' => $stripeSetting->currency,
             'source' => $request->stripe_token,
-            'description' => 'Payment Test',
+            'description' => 'Product purchase!',
         ]);
+
+        if ($response->status === 'succeeded') {
+            $this->storeOrder('stripe', 1, $response->id, $payableAmount, $stripeSetting->currency);
+
+            /** CLEAR SESSION */
+            $this->clearSession();
+
+            return redirect()->route('user.payment-success');
+        } else {
+            toastr('Payment Failed', 'error');
+
+            return redirect()->route('user.payment');
+        }
     }
 
 }
