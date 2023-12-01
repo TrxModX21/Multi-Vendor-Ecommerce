@@ -1,5 +1,7 @@
 @php
     $address = json_decode($order->order_address);
+    $shipping = json_decode($order->shipping_method);
+    $coupon = json_decode($order->coupon);
 @endphp
 @extends('root.layouts.master')
 
@@ -73,31 +75,38 @@
                                     <tr>
                                         <th data-width="40">#</th>
                                         <th>Item</th>
+                                        <th>Variant</th>
+                                        <th>Shop Name</th>
                                         <th class="text-center">Price</th>
                                         <th class="text-center">Quantity</th>
                                         <th class="text-right">Totals</th>
                                     </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Mouse Wireless</td>
-                                        <td class="text-center">$10.99</td>
-                                        <td class="text-center">1</td>
-                                        <td class="text-right">$10.99</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Keyboard Wireless</td>
-                                        <td class="text-center">$20.00</td>
-                                        <td class="text-center">3</td>
-                                        <td class="text-right">$60.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Headphone Blitz TDR-3000</td>
-                                        <td class="text-center">$600.00</td>
-                                        <td class="text-center">1</td>
-                                        <td class="text-right">$600.00</td>
-                                    </tr>
+                                    @foreach ($order->orderProducts as $product)
+                                        @php
+                                            $variants = json_decode($product->variants);
+                                        @endphp
+                                        <tr>
+                                            <td>{{ ++$loop->index }}</td>
+                                            <td>{{ $product->product_name }}</td>
+                                            @if (!empty($variants))
+                                                <td>
+                                                    @foreach ($variants as $key => $variant)
+                                                        <b>{{ $key }}:</b> {{ $variant->name }}
+                                                        ({{ $settings->currency_icon }} {{ $variant->price }})
+                                                        <br>
+                                                    @endforeach
+                                                </td>
+                                            @else
+                                                <td>N/A</td>
+                                            @endif
+                                            <td>{{ $product->vendor->shop_name }}</td>
+                                            <td class="text-center">{{ $settings->currency_icon }}
+                                                {{ $product->unit_price }}</td>
+                                            <td class="text-center">{{ $product->qty }}</td>
+                                            <td class="text-right">{{ $settings->currency_icon }}
+                                                {{ $product->unit_price * $product->qty + $product->variant_total }}</td>
+                                        </tr>
+                                    @endforeach
                                 </table>
                             </div>
                             <div class="row mt-4">
@@ -106,26 +115,39 @@
                                     <p class="section-lead">The payment method that we provide is to
                                         make it easier for you to pay invoices.</p>
                                     <div class="images">
-                                        <img src="assets/img/visa.png" alt="visa">
-                                        <img src="assets/img/jcb.png" alt="jcb">
-                                        <img src="assets/img/mastercard.png" alt="mastercard">
-                                        <img src="assets/img/paypal.png" alt="paypal">
+                                        <img src="{{ asset('backend/assets/img/visa.png') }}" alt="visa">
+                                        <img src="{{ asset('backend/assets/img/jcb.png') }}" alt="jcb">
+                                        <img src="{{ asset('backend/assets/img/mastercard.png') }}" alt="mastercard">
+                                        <img src="{{ asset('backend/assets/img/paypal.png') }}" alt="paypal">
                                     </div>
                                 </div>
                                 <div class="col-lg-4 text-right">
                                     <div class="invoice-detail-item">
                                         <div class="invoice-detail-name">Subtotal</div>
-                                        <div class="invoice-detail-value">$670.99</div>
+                                        <div class="invoice-detail-value">{{ $settings->currency_icon }}
+                                            {{ $order->sub_total }}</div>
                                     </div>
                                     <div class="invoice-detail-item">
-                                        <div class="invoice-detail-name">Shipping</div>
-                                        <div class="invoice-detail-value">$15</div>
+                                        <div class="invoice-detail-name">Shipping (+)</div>
+                                        <div class="invoice-detail-value">{{ $settings->currency_icon }}
+                                            {{ @$shipping->cost }}</div>
                                     </div>
+                                    @if (!empty($coupon))
+                                        <div class="invoice-detail-item">
+                                            <div class="invoice-detail-name">Coupon (-)</div>
+                                            @if ($coupon->discount_type === 'percent')
+                                                <div class="invoice-detail-value">{{ $coupon->discount }} %</div>
+                                            @else
+                                                <div class="invoice-detail-value">{{ $settings->currency_icon }}
+                                                    {{ $coupon->discount }}</div>
+                                            @endif
+                                        </div>
+                                    @endif
                                     <hr class="mt-2 mb-2">
                                     <div class="invoice-detail-item">
                                         <div class="invoice-detail-name">Total</div>
                                         <div class="invoice-detail-value invoice-detail-value-lg">
-                                            $685.99</div>
+                                            {{ $settings->currency_icon }} {{ $order->amount }}</div>
                                     </div>
                                 </div>
                             </div>
