@@ -35,6 +35,18 @@
             </li>
             {{-- MANAGE CATEGORIES END --}}
 
+            {{-- MANAGE ORDER START --}}
+            <li class="dropdown {{ setActive(['root.order.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
+                    <span>Manage Order</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ setActive(['root.order.*']) }}">
+                        <a class="nav-link" href="{{ route('root.order.index') }}">All Order</a>
+                    </li>
+                </ul>
+            </li>
+            {{-- MANAGE ORDER END --}}
+
             {{-- MANAGE PRODUCTS START --}}
             <li
                 class="dropdown {{ setActive(['root.brand.*', 'root.products.*', 'root.products-image-gallery.*', 'root.products-variant.*', 'root.products-variant-item.*', 'root.seller-product.*', 'root.seller-pending-product.*']) }}">

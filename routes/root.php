@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\FlashSaleController;
+use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\PaymentSettingController;
 use App\Http\Controllers\Backend\PaypalSettingController;
 use App\Http\Controllers\Backend\ProductController;
@@ -51,6 +52,9 @@ Route::put('child-category/change-status', [ChildCategoryController::class, 'cha
 Route::get('get-subcategories', [ChildCategoryController::class, 'getSubCategories'])
     ->name('get-subcategories');
 Route::resource('child-category', ChildCategoryController::class);
+
+/** ORDER ROUTES */
+Route::resource('order', OrderController::class);
 
 /** BRAND ROUTES */
 Route::put('brand/change-status', [BrandController::class, 'changeStatus'])
