@@ -56,6 +56,8 @@ Route::resource('child-category', ChildCategoryController::class);
 /** ORDER ROUTES */
 Route::get('order-status', [OrderController::class, 'changeOrderStatus'])
     ->name('order-status.update');
+Route::get('payment-status', [OrderController::class, 'changePaymentStatus'])
+    ->name('payment-status.update');
 Route::resource('order', OrderController::class);
 
 /** BRAND ROUTES */

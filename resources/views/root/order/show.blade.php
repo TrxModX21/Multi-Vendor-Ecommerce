@@ -117,11 +117,24 @@
                                 </table>
                             </div>
                             <div class="row mt-4">
-                                <div class="col-lg-8">
+                                <div class="col-lg-4">
+                                    <div class="section-title">Payment Status</div>
+                                    <div class="form-group">
+                                        <select name="payment_status" id="payment_status" data-id="{{ $order->id }}"
+                                            class="form-control">
+                                            <option {{ $order->payment_status === 0 ? 'selected' : '' }} value="0">
+                                                Pending</option>
+                                            <option {{ $order->payment_status === 1 ? 'selected' : '' }} value="1">
+                                                Completed</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4">
                                     <div class="section-title">Order Status</div>
                                     <div class="form-group">
                                         <select name="order_status" id="order_status" data-id="{{ $order->id }}"
-                                            class="form-control col-md-4">
+                                            class="form-control">
                                             @foreach (config('order_status.order_status_admin') as $key => $orderStatus)
                                                 <option {{ $order->status === $key ? 'selected' : '' }}
                                                     value="{{ $key }}">{{ $orderStatus['status'] }}
@@ -129,7 +142,11 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                </div>
+                            </div>
 
+                            <div class="row">
+                                <div class="col-lg-8">
                                     <div class="section-title">Payment Method</div>
                                     <p class="section-lead">The payment method that we provide is to
                                         make it easier for you to pay invoices.</p>
@@ -199,6 +216,28 @@
                 $.ajax({
                     method: 'GET',
                     url: "{{ route('root.order-status.update') }}",
+                    data: {
+                        status,
+                        id
+                    },
+                    success: function(data) {
+                        if (data.status === 'success') {
+                            toastr.success(data.message);
+                        }
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    }
+                });
+            });
+
+            $('#payment_status').on('change', function() {
+                let status = $(this).val();
+                let id = $(this).data('id');
+
+                $.ajax({
+                    method: 'GET',
+                    url: "{{ route('root.payment-status.update') }}",
                     data: {
                         status,
                         id

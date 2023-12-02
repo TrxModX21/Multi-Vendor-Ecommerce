@@ -65,7 +65,7 @@ class OrderDataTable extends DataTable
                 if ($query->payment_status === 1) {
                     return "<span class='badge bg-success'>complete</span>";
                 } else {
-                    return "<span class='badge bg-danger'>pending</span>";
+                    return "<span class='badge bg-warning'>pending</span>";
                 }
             })
             ->setRowId('id')
