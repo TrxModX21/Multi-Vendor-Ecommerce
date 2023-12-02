@@ -42,7 +42,24 @@ class OrderDataTable extends DataTable
                 return $query->currency_icon . $query->amount;
             })
             ->addColumn('order_status', function ($query) {
-                return "<span class='badge bg-warning'>$query->order_status</span>";
+                switch ($query->order_status) {
+                    case 'pending':
+                        return "<span class='badge bg-warning'>pending</span>";
+                    case 'processed_and_ready_to_ship':
+                        return "<span class='badge bg-info text-white'>processed</span>";
+                    case 'dropped_off':
+                        return "<span class='badge bg-info text-white'>drop off</span>";
+                    case 'shipped':
+                        return "<span class='badge bg-info text-white'>shipped</span>";
+                    case 'out_for_delivery':
+                        return "<span class='badge bg-primary text-white'>out of delivery</span>";
+                    case 'delivered':
+                        return "<span class='badge bg-success text-white'>delivered</span>";
+                    case 'canceled':
+                        return "<span class='badge bg-danger text-white'>canceled</span>";
+                    default:
+                        break;
+                }
             })
             ->addColumn('payment_status', function ($query) {
                 if ($query->payment_status === 1) {
