@@ -66,4 +66,18 @@ class OrderController extends Controller
     {
         //
     }
+
+    public function changeOrderStatus(Request $request)
+    {
+        $order = Order::findOrFail($request->id);
+
+        $order->order_status = $request->status;
+
+        $order->save();
+
+        return response([
+            'status' => 'success',
+            'message' => 'Order Status Updated Successfully!'
+        ]);
+    }
 }

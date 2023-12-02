@@ -118,6 +118,18 @@
                             </div>
                             <div class="row mt-4">
                                 <div class="col-lg-8">
+                                    <div class="section-title">Order Status</div>
+                                    <div class="form-group">
+                                        <select name="order_status" id="order_status" data-id="{{ $order->id }}"
+                                            class="form-control col-md-4">
+                                            @foreach (config('order_status.order_status_admin') as $key => $orderStatus)
+                                                <option {{ $order->status === $key ? 'selected' : '' }}
+                                                    value="{{ $key }}">{{ $orderStatus['status'] }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
                                     <div class="section-title">Payment Method</div>
                                     <p class="section-lead">The payment method that we provide is to
                                         make it easier for you to pay invoices.</p>
@@ -176,3 +188,31 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#order_status').on('change', function() {
+                let status = $(this).val();
+                let id = $(this).data('id');
+
+                $.ajax({
+                    method: 'GET',
+                    url: "{{ route('root.order-status.update') }}",
+                    data: {
+                        status,
+                        id
+                    },
+                    success: function(data) {
+                        if (data.status === 'success') {
+                            toastr.success(data.message);
+                        }
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    }
+                });
+            });
+        });
+    </script>
+@endpush

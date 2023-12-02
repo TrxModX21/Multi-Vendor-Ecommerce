@@ -54,6 +54,8 @@ Route::get('get-subcategories', [ChildCategoryController::class, 'getSubCategori
 Route::resource('child-category', ChildCategoryController::class);
 
 /** ORDER ROUTES */
+Route::get('order-status', [OrderController::class, 'changeOrderStatus'])
+    ->name('order-status.update');
 Route::resource('order', OrderController::class);
 
 /** BRAND ROUTES */
