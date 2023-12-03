@@ -70,6 +70,16 @@
             </li>
             {{-- MANAGE ORDER END --}}
 
+            {{-- ORDER TRANSACTION --}}
+            <li class="{{ setActive(['root.transaction.*']) }}">
+                <a class="nav-link" href="{{ route('root.transaction.index') }}">
+                    <i class="far fa-square"></i>
+                    <span>Transactions</span>
+                </a>
+            </li>
+            {{-- ORDER TRANSACTION --}}
+
+
             {{-- MANAGE PRODUCTS START --}}
             <li
                 class="dropdown {{ setActive(['root.brand.*', 'root.products.*', 'root.products-image-gallery.*', 'root.products-variant.*', 'root.products-variant-item.*', 'root.seller-product.*', 'root.seller-pending-product.*']) }}">

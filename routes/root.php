@@ -18,6 +18,7 @@ use App\Http\Controllers\Backend\ShippingRuleController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\StripeSettingController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\TransactionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\RootController;
@@ -73,6 +74,9 @@ Route::get('delivered-order', [OrderController::class, 'deliveredOrders'])
 Route::get('canceled-order', [OrderController::class, 'canceledOrders'])
     ->name('canceled-order');
 Route::resource('order', OrderController::class);
+
+/** ORDER TRANSACTION ROUTES */
+Route::get('transaction', [TransactionController::class, 'index'])->name('transaction.index');
 
 /** BRAND ROUTES */
 Route::put('brand/change-status', [BrandController::class, 'changeStatus'])
