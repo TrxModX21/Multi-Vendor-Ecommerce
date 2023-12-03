@@ -58,6 +58,20 @@ Route::get('order-status', [OrderController::class, 'changeOrderStatus'])
     ->name('order-status.update');
 Route::get('payment-status', [OrderController::class, 'changePaymentStatus'])
     ->name('payment-status.update');
+Route::get('pending-order', [OrderController::class, 'pendingOrders'])
+    ->name('pending-order');
+Route::get('processed-order', [OrderController::class, 'processedOrders'])
+    ->name('processed-order');
+Route::get('droppedoff-order', [OrderController::class, 'droppedoffOrders'])
+    ->name('droppedoff-order');
+Route::get('shipped-order', [OrderController::class, 'shippedOrders'])
+    ->name('shipped-order');
+Route::get('out-for-delivery-order', [OrderController::class, 'outForDeliveryOrders'])
+    ->name('out-for-delivery-order');
+Route::get('delivered-order', [OrderController::class, 'deliveredOrders'])
+    ->name('delivered-order');
+Route::get('canceled-order', [OrderController::class, 'canceledOrders'])
+    ->name('canceled-order');
 Route::resource('order', OrderController::class);
 
 /** BRAND ROUTES */

@@ -136,7 +136,7 @@
                                         <select name="order_status" id="order_status" data-id="{{ $order->id }}"
                                             class="form-control">
                                             @foreach (config('order_status.order_status_admin') as $key => $orderStatus)
-                                                <option {{ $order->status === $key ? 'selected' : '' }}
+                                                <option {{ $order->order_status === $key ? 'selected' : '' }}
                                                     value="{{ $key }}">{{ $orderStatus['status'] }}
                                                 </option>
                                             @endforeach

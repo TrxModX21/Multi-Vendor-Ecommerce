@@ -36,12 +36,35 @@
             {{-- MANAGE CATEGORIES END --}}
 
             {{-- MANAGE ORDER START --}}
-            <li class="dropdown {{ setActive(['root.order.*']) }}">
+            <li
+                class="dropdown {{ setActive(['root.order.*', 'root.pending-order', 'root.processed-order', 'root.droppedoff-order', 'root.shipped-order', 'root.out-for-delivery-order', 'root.delivered-order', 'root.canceled-order']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Manage Order</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ setActive(['root.order.*']) }}">
                         <a class="nav-link" href="{{ route('root.order.index') }}">All Order</a>
+                    </li>
+                    <li class="{{ setActive(['root.pending-order']) }}">
+                        <a class="nav-link" href="{{ route('root.pending-order') }}">All Pending Orders</a>
+                    </li>
+                    <li class="{{ setActive(['root.processed-order']) }}">
+                        <a class="nav-link" href="{{ route('root.processed-order') }}">All Processed Orders</a>
+                    </li>
+                    <li class="{{ setActive(['root.droppedoff-order']) }}">
+                        <a class="nav-link" href="{{ route('root.droppedoff-order') }}">All Dropped Off Orders</a>
+                    </li>
+                    <li class="{{ setActive(['root.shipped-order']) }}">
+                        <a class="nav-link" href="{{ route('root.shipped-order') }}">All Shipped Orders</a>
+                    </li>
+                    <li class="{{ setActive(['root.out-for-delivery-order']) }}">
+                        <a class="nav-link" href="{{ route('root.out-for-delivery-order') }}">All Out For Delivery
+                            Orders</a>
+                    </li>
+                    <li class="{{ setActive(['root.delivered-order']) }}">
+                        <a class="nav-link" href="{{ route('root.delivered-order') }}">All Delivered Orders</a>
+                    </li>
+                    <li class="{{ setActive(['root.canceled-order']) }}">
+                        <a class="nav-link" href="{{ route('root.canceled-order') }}">All Canceled Orders</a>
                     </li>
                 </ul>
             </li>
