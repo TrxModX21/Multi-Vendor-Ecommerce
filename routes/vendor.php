@@ -57,3 +57,4 @@ Route::put('products-variant-item/change-status', [VendorProductVariantItemContr
 
 /** ORDER ROUTES */
 Route::get('orders', [VendorOrderController::class, 'index'])->name('orders.index');
+Route::get('orders/show/{id}', [VendorOrderController::class, 'show'])->name('orders.show');
