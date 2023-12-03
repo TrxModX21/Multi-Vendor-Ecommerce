@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\Backend\VendorOrderController;
 use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\Backend\VendorProductImageGalleryController;
 use App\Http\Controllers\Backend\VendorProductVariantController;
@@ -53,3 +54,6 @@ Route::delete('products-variant-item/{variantItemId}', [VendorProductVariantItem
     ->name('products-variant-item.destroy');
 Route::put('products-variant-item/change-status', [VendorProductVariantItemController::class, 'changeStatus'])
     ->name('products-variant-item.change-status');
+
+/** ORDER ROUTES */
+Route::get('orders', [VendorOrderController::class, 'index'])->name('orders.index');
