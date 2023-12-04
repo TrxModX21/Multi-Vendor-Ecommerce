@@ -131,10 +131,10 @@
                     </li>
                 </ul>
             </li>
-            {{-- MANAGE WEBSITE END --}}
+            {{-- MANAGE ECOMERCE END --}}
 
             {{-- MANAGE WEBSITE START --}}
-            <li class="dropdown {{ setActive(['root.slider.*']) }}">
+            <li class="dropdown {{ setActive(['root.slider.*', 'root.home-page-setting.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                     <i class="fas fa-columns"></i>
                     <span>Manage Website</span>
@@ -142,6 +142,9 @@
                 <ul class="dropdown-menu">
                     <li class="{{ setActive(['root.slider.*']) }}">
                         <a class="nav-link" href="{{ route('root.slider.index') }}">Slider</a>
+                    </li>
+                    <li class="{{ setActive(['root.home-page-setting.*']) }}">
+                        <a class="nav-link" href="{{ route('root.home-page-setting.index') }}">Home Page Setting</a>
                     </li>
                 </ul>
             </li>

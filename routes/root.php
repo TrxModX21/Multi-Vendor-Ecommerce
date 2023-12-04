@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\FlashSaleController;
+use App\Http\Controllers\Backend\HomePageSettingController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\PaymentSettingController;
 use App\Http\Controllers\Backend\PaypalSettingController;
@@ -157,6 +158,9 @@ Route::get('settings', [SettingController::class, 'index'])
 Route::put('general-setting-update', [SettingController::class, 'generalSettingUpdate'])
     ->name('general-setting-update');
 Route::get('payment-setting', [PaymentSettingController::class, 'index'])->name('payment-setting.index');
+
+/** HOME PAGE SETTING ROUTES */
+Route::get('home-page-setting', [HomePageSettingController::class, 'index'])->name('home-page-setting.index');
 
 /** PAYPAL ROUTES */
 Route::resource('paypal-setting', PaypalSettingController::class);
