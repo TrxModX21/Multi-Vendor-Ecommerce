@@ -1,7 +1,7 @@
 <div class="tab-pane fade show active" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
     <div class="card border">
         <div class="card-body">
-            <form action="{{ route('root.general-setting-update') }}" method="POST">
+            <form action="{{ route('root.popular-category-section.update') }}" method="POST">
                 @csrf
                 @method('PUT')
 
@@ -9,8 +9,8 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="main-category-1">Category</label>
-                            <select name="main-category-1" id="main-category-1" class="form-control main-category">
+                            <label for="cat_one">Category</label>
+                            <select name="cat_one" id="cat_one" class="form-control main-category">
                                 <option value=""><---Select---></option>
 
                                 @foreach ($categories as $category)
@@ -22,8 +22,8 @@
 
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="sub-category-1">Sub Category</label>
-                            <select name="sub-category-1" id="sub-category-1" class="form-control sub-category">
+                            <label for="sub_cat_one">Sub Category</label>
+                            <select name="sub_cat_one" id="sub_cat_one" class="form-control sub-category">
                                 <option value=""><---Empty---></option>
 
                             </select>
@@ -32,8 +32,8 @@
 
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="child-category-1">Child Category</label>
-                            <select name="child-category-1" id="child-category-1" class="form-control child-category">
+                            <label for="child_cat_one">Child Category</label>
+                            <select name="child_cat_one" id="child_cat_one" class="form-control child-category">
                                 <option value=""><---Empty---></option>
 
                             </select>
@@ -45,8 +45,8 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="layout">Category</label>
-                            <select name="layout" id="layout" class="form-control main-category">
+                            <label for="cat_two">Category</label>
+                            <select name="cat_two" id="cat_two" class="form-control main-category">
                                 <option value=""><---Select---></option>
 
                                 @foreach ($categories as $category)
@@ -58,8 +58,8 @@
 
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="layout">Sub Category</label>
-                            <select name="layout" id="layout" class="form-control sub-category">
+                            <label for="sub_cat_two">Sub Category</label>
+                            <select name="sub_cat_two" id="sub_cat_two" class="form-control sub-category">
                                 <option value=""><---Empty---></option>
 
                             </select>
@@ -68,8 +68,8 @@
 
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="layout">Child Category</label>
-                            <select name="layout" id="layout" class="form-control child-category">
+                            <label for="child_cat_two">Child Category</label>
+                            <select name="child_cat_two" id="child_cat_two" class="form-control child-category">
                                 <option value=""><---Empty---></option>
 
                             </select>
@@ -81,8 +81,8 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="layout">Category</label>
-                            <select name="layout" id="layout" class="form-control main-category">
+                            <label for="cat_three">Category</label>
+                            <select name="cat_three" id="cat_three" class="form-control main-category">
                                 <option value=""><---Select---></option>
 
                                 @foreach ($categories as $category)
@@ -94,8 +94,8 @@
 
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="layout">Sub Category</label>
-                            <select name="layout" id="layout" class="form-control sub-category">
+                            <label for="sub_cat_three">Sub Category</label>
+                            <select name="sub_cat_three" id="sub_cat_three" class="form-control sub-category">
                                 <option value=""><---Empty---></option>
 
                             </select>
@@ -104,8 +104,8 @@
 
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="layout">Child Category</label>
-                            <select name="layout" id="layout" class="form-control child-category">
+                            <label for="child_cat_three">Child Category</label>
+                            <select name="child_cat_three" id="child_cat_three" class="form-control child-category">
                                 <option value=""><---Empty---></option>
 
                             </select>
@@ -117,8 +117,8 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="layout">Category</label>
-                            <select name="layout" id="layout" class="form-control main-category">
+                            <label for="cat_four">Category</label>
+                            <select name="cat_four" id="cat_four" class="form-control main-category">
                                 <option value=""><---Select---></option>
 
                                 @foreach ($categories as $category)
@@ -130,8 +130,8 @@
 
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="layout">Sub Category</label>
-                            <select name="layout" id="layout" class="form-control sub-category">
+                            <label for="sub_cat_four">Sub Category</label>
+                            <select name="sub_cat_four" id="sub_cat_four" class="form-control sub-category">
                                 <option value=""><---Empty---></option>
 
                             </select>
@@ -140,8 +140,8 @@
 
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="layout">Child Category</label>
-                            <select name="layout" id="layout" class="form-control child-category">
+                            <label for="child_cat_four">Child Category</label>
+                            <select name="child_cat_four" id="child_cat_four" class="form-control child-category">
                                 <option value=""><---Empty---></option>
 
                             </select>

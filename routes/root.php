@@ -161,6 +161,7 @@ Route::get('payment-setting', [PaymentSettingController::class, 'index'])->name(
 
 /** HOME PAGE SETTING ROUTES */
 Route::get('home-page-setting', [HomePageSettingController::class, 'index'])->name('home-page-setting.index');
+Route::put('popular-category-section', [HomePageSettingController::class, 'updatePopularCategorySection'])->name('popular-category-section.update');
 
 /** PAYPAL ROUTES */
 Route::resource('paypal-setting', PaypalSettingController::class);
