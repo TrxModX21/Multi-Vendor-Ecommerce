@@ -10,7 +10,7 @@
 
     @include('frontend.home.sections.flash-sale')
 
-    {{-- @include('frontend.home.sections.monthly-top-product') --}}
+    @include('frontend.home.sections.monthly-top-product')
 
     {{-- @include('frontend.home.sections.brand-slider') --}}
 
