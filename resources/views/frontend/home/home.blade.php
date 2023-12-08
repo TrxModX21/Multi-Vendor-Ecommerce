@@ -12,7 +12,7 @@
 
     @include('frontend.home.sections.monthly-top-product')
 
-    {{-- @include('frontend.home.sections.brand-slider') --}}
+    @include('frontend.home.sections.brand-slider')
 
     {{-- @include('frontend.home.sections.single-banner') --}}
 
