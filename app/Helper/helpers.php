@@ -121,3 +121,9 @@ function getFinalPayableAmount()
 {
     return getMainCartTotal() + getShippingFee();
 }
+
+/** LIMIT TEXT */
+function limitText($text, $limit = 20)
+{
+    return \Str::limit($text, $limit);
+}
