@@ -13,7 +13,9 @@ class HomePageSettingController extends Controller
     {
         $categories = Category::where('status', 1)->get();
 
-        return view('root.home-page-setting.index', compact('categories'));
+        $popularCategorySection = HomePageSetting::where('key', 'popular_category_section')->first();
+
+        return view('root.home-page-setting.index', compact('categories', 'popularCategorySection'));
     }
 
     public function updatePopularCategorySection(Request $request)
