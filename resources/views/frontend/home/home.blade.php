@@ -16,7 +16,7 @@
 
     {{-- @include('frontend.home.sections.single-banner') --}}
 
-    {{-- @include('frontend.home.sections.hot-deals') --}}
+    @include('frontend.home.sections.hot-deals')
 
     {{-- @include('frontend.home.sections.category-product-slider-one') --}}
 
