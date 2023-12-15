@@ -20,7 +20,7 @@
 
     @include('frontend.home.sections.category-product-slider-one')
 
-    {{-- @include('frontend.home.sections.category-product-slider-two') --}}
+    @include('frontend.home.sections.category-product-slider-two')
 
     {{-- @include('frontend.home.sections.large-banner') --}}
 

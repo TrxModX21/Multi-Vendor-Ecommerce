@@ -50,7 +50,7 @@
                         {{-- ACTION BUTTON IN IMAGE --}}
                         <ul class="wsus__single_pro_icon">
                             <li>
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-{{ $product->slug }}">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#product-type-{{ $product->slug }}">
                                     <i class="far fa-eye"></i>
                                 </a>
                             </li>
@@ -134,7 +134,7 @@
         $product = \App\Models\Product::find($item->product_id);
     @endphp
     <section class="product_popup_modal">
-        <div class="modal fade" id="modal-{{ $product->slug }}" tabindex="-1" aria-hidden="true">
+        <div class="modal fade" id="product-type-{{ $product->slug }}" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
