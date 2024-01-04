@@ -22,9 +22,9 @@
 
     @include('frontend.home.sections.category-product-slider-two')
 
-    {{-- @include('frontend.home.sections.large-banner') --}}
+    @include('frontend.home.sections.large-banner')
 
-    {{-- @include('frontend.home.sections.weekly-best-item') --}}
+    @include('frontend.home.sections.weekly-best-item')
 
     {{-- @include('frontend.home.sections.services') --}}
 

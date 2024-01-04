@@ -26,6 +26,10 @@
                                         <a class="list-group-item list-group-item-action" id="list-settings-list"
                                             data-toggle="list" href="#list-settings" role="tab">Product Slider
                                             Section Two</a>
+                                        <a href="#category-slider-three" class="list-group-item list-group-item-action"
+                                            id="list-cat-three-list" data-toggle="list" role="tab">Product Slider
+                                            Section
+                                            Three</a>
                                     </div>
                                 </div>
                                 <div class="col-10">
@@ -36,6 +40,8 @@
                                         @include('root.home-page-setting.sections.product-slider-section-one')
 
                                         @include('root.home-page-setting.sections.product-slider-section-two')
+
+                                        @include('root.home-page-setting.sections.product-slider-section-three')
                                     </div>
                                 </div>
                             </div>
