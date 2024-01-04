@@ -39,6 +39,8 @@ Route::get('root/login', [RootController::class, 'login'])->name('root.login');
 
 Route::get('flash-sale', [FlashSaleController::class, 'index'])->name('flash-sale');
 
+/** PRODUCT ROUTES */
+Route::get('products', [FrontendProductController::class, 'productsIndex'])->name('products.index');
 Route::get('product-detail/{slug}', [FrontendProductController::class, 'showProduct'])->name('product-detail');
 
 /** ADD TO CART ROUTES */

@@ -28,7 +28,7 @@
                             <li>
                                 {{-- MAIN CATEGORY START --}}
                                 <a class="{{ count($category->subCategories) > 0 ? 'wsus__droap_arrow' : '' }}"
-                                    href="#">
+                                    href="{{ route('products.index', ['category' => $category->slug]) }}">
                                     <i class="{{ $category->icon }}"></i>
                                     {{ $category->name }}
                                 </a>
