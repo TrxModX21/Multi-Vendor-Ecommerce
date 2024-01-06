@@ -482,5 +482,24 @@
                 });
             });
         });
+
+        @php
+            if (request()->has('range')) {
+                $price = explode(';', request()->range);
+            }
+            $from = isset($price[0]) ? $price[0] : 0;
+            $to = isset($price[1]) ? $price[1] : 2100;
+        @endphp
+
+        jQuery(function() {
+            jQuery("#slider_range").flatslider({
+                min: 0,
+                max: 10000,
+                step: 100,
+                values: [{{ $from }}, {{ $to }}],
+                range: true,
+                einheit: '{{ $settings->currency_icon }}'
+            });
+        });
     </script>
 @endpush
