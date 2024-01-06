@@ -40,7 +40,8 @@
                                         @foreach ($category->subCategories as $subCategory)
                                             <li>
                                                 {{-- SUB CATEGORY START --}}
-                                                <a href="#">
+                                                <a
+                                                    href="{{ route('products.index', ['subcategory' => $subCategory->slug]) }}">
                                                     {{ $subCategory->name }}
                                                     @if (count($subCategory->childCategories) > 0)
                                                         <i class="fas fa-angle-right"></i>
@@ -53,7 +54,8 @@
                                                     <ul class="wsus__sub_category">
                                                         @foreach ($subCategory->childCategories as $childCategory)
                                                             <li>
-                                                                <a href="#">{{ $childCategory->name }}</a>
+                                                                <a
+                                                                    href="{{ route('products.index', ['childcategory' => $childCategory->slug]) }}">{{ $childCategory->name }}</a>
                                                             </li>
                                                         @endforeach
                                                     </ul>
