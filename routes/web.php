@@ -86,6 +86,7 @@ Route::group([
     /** WISHLIST ROUTE */
     Route::get('wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
     Route::get('wishlist/add-product', [WishlistController::class, 'addToWishlist'])->name('wishlist.store');
+    Route::get('wishlist/remove-product/{id}', [WishlistController::class, 'removeWishlist'])->name('wishlist.remove');
 
     /** CHECKOUT ROUTES */
     Route::get('checkout', [CheckoutController::class, 'index'])->name('checkout.index');

@@ -131,7 +131,7 @@
         }
 
         // ADD PRODUCT TO WISHLIST
-        $('.wishlist').on('click', function(e) {
+        $('.add_to_wishlist').on('click', function(e) {
             e.preventDefault();
 
             let id = $(this).data('id');
@@ -150,7 +150,7 @@
                     }
                 },
                 error: function(data) {
-                    alert(data);
+                    console.log(data);
                 }
             });
         })

@@ -56,7 +56,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="" class="wishlist" data-id="{{ $product->id }}">
+                                <a href="" class="add_to_wishlist" data-id="{{ $product->id }}">
                                     <i class="far fa-heart"></i>
                                 </a>
                             </li>
