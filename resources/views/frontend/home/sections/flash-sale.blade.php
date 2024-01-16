@@ -84,7 +84,7 @@
 
                             {{-- NAME --}}
                             <a class="wsus__pro_name"
-                                href="{{ route('product-detail', $product->slug) }}">{{ $product->name }}</a>
+                                href="{{ route('product-detail', $product->slug) }}">{{ limitText($product->name, 52) }}</a>
                             {{-- NAME --}}
 
                             {{-- PRICE --}}
@@ -282,7 +282,12 @@
                                         <ul class="wsus__button_area">
                                             <li><button type="submit" class="add_cart">add to cart</button></li>
                                             <li><a class="buy_now" href="">buy now</a></li>
-                                            <li><a href="#"><i class="fal fa-heart"></i></a></li>
+                                            <li>
+                                                <a href="" class="add_to_wishlist"
+                                                    data-id="{{ $product->id }}">
+                                                    <i class="fal fa-heart"></i>
+                                                </a>
+                                            </li>
                                             <li><a href="#"><i class="far fa-random"></i></a></li>
                                         </ul>
                                     </form>

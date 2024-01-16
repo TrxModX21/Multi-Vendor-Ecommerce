@@ -189,8 +189,13 @@
                                                             data-bs-target="#modal-{{ $product->slug }}"><i
                                                                 class="far fa-eye"></i></a>
                                                     </li>
-                                                    <li><a href="#"><i class="far fa-heart"></i></a></li>
-                                                    <li><a href="#"><i class="far fa-random"></i></a>
+                                                    <li>
+                                                        <a href="" class="add_to_wishlist"
+                                                            data-id="{{ $product->id }}">
+                                                            <i class="far fa-heart"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li><a href=""><i class="far fa-random"></i></a>
                                                 </ul>
                                                 <div class="wsus__product_details">
                                                     <a class="wsus__category"
@@ -319,8 +324,13 @@
                                                             <button type="submit" class="add_cart_two">add to
                                                                 cart</button>
                                                         </form>
-                                                        <li><a href="#"><i class="far fa-heart"></i></a></li>
-                                                        <li><a href="#"><i class="far fa-random"></i></a>
+                                                        <li>
+                                                            <a href="" class="add_to_wishlist"
+                                                                data-id="{{ $product->id }}">
+                                                                <i class="far fa-heart"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li><a href=""><i class="far fa-random"></i></a>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -505,7 +515,12 @@
                                                         cart</button>
                                                 </li>
                                                 <li><a class="buy_now" href="">buy now</a></li>
-                                                <li><a href="#"><i class="fal fa-heart"></i></a></li>
+                                                <li>
+                                                    <a href="" class="add_to_wishlist"
+                                                        data-id="{{ $product->id }}">
+                                                        <i class="fal fa-heart"></i>
+                                                    </a>
+                                                </li>
                                                 <li><a href="#"><i class="far fa-random"></i></a></li>
                                             </ul>
                                         </form>
