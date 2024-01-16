@@ -34,7 +34,9 @@ class WishlistController extends Controller
 
         $wishlist->save();
 
-        return response(['status' => 'success', 'message' => 'Product added into the wishlist!']);
+        $count = Wishlist::where('user_id', Auth::user()->id)->count();
+
+        return response(['status' => 'success', 'message' => 'Product added into the wishlist!', 'count' => $count]);
     }
 
     public function removeWishlist(string $id)
