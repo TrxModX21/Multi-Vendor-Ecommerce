@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\FlashSaleController;
 use App\Http\Controllers\Backend\FooterInfoController;
+use App\Http\Controllers\Backend\FooterSocialController;
 use App\Http\Controllers\Backend\HomePageSettingController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\PaymentSettingController;
@@ -169,6 +170,7 @@ Route::put('product-slider-section-three', [HomePageSettingController::class, 'u
 
 /** FOOTER ROUTES */
 Route::resource('footer-info', FooterInfoController::class);
+Route::resource('footer-socials', FooterSocialController::class);
 
 /** PAYPAL ROUTES */
 Route::resource('paypal-setting', PaypalSettingController::class);

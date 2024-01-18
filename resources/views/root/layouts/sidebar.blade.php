@@ -151,7 +151,7 @@
             {{-- MANAGE WEBSITE END --}}
 
             {{-- WEBSITE FOOTER START --}}
-            <li class="dropdown {{ setActive(['root.footer-info.*']) }}">
+            <li class="dropdown {{ setActive(['root.footer-info.*', 'root.footer-socials.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                     <i class="fas fa-columns"></i>
                     <span>Footer</span>
@@ -160,8 +160,8 @@
                     <li class="{{ setActive(['root.footer-info.index']) }}">
                         <a class="nav-link" href="{{ route('root.footer-info.index') }}">Footer Information</a>
                     </li>
-                    <li class="{{ setActive(['root.home-page-setting.*']) }}">
-                        <a class="nav-link" href="{{ route('root.home-page-setting.index') }}">Home Page Setting</a>
+                    <li class="{{ setActive(['root.footer-socials.index']) }}">
+                        <a class="nav-link" href="{{ route('root.footer-socials.index') }}">Footer Socials</a>
                     </li>
                 </ul>
             </li>
