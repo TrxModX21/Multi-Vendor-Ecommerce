@@ -148,10 +148,34 @@
                     </li>
                 </ul>
             </li>
-
-            <li><a class="nav-link" href="{{ route('root.settings.index') }}"><i class="far fa-square"></i>
-                    <span>Settings</span></a></li>
             {{-- MANAGE WEBSITE END --}}
+
+            {{-- WEBSITE FOOTER START --}}
+            <li class="dropdown {{ setActive(['root.footer-info.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fas fa-columns"></i>
+                    <span>Footer</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="{{ setActive(['root.footer-info.index']) }}">
+                        <a class="nav-link" href="{{ route('root.footer-info.index') }}">Footer Information</a>
+                    </li>
+                    <li class="{{ setActive(['root.home-page-setting.*']) }}">
+                        <a class="nav-link" href="{{ route('root.home-page-setting.index') }}">Home Page Setting</a>
+                    </li>
+                </ul>
+            </li>
+            {{-- WEBSITE FOOTER END --}}
+
+            {{-- SETTINGS START --}}
+            <li>
+                <a class="nav-link" href="{{ route('root.settings.index') }}">
+                    <i class="far fa-square"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+            {{-- SETTINGS END --}}
+
 
             {{-- <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
