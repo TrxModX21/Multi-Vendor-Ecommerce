@@ -63,7 +63,9 @@ class FooterSocialController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $footerSocial = FooterSocial::findOrFail($id);
+
+        return view('root.footer.footer-socials.edit', compact('footerSocial'));
     }
 
     /**
@@ -71,7 +73,24 @@ class FooterSocialController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'icon' => ['required', 'max:200'],
+            'name' => ['required', 'max:100'],
+            'url' => ['required', 'url'],
+            'status' => ['required'],
+        ]);
+
+        $footerSocial = FooterSocial::findOrFail($id);
+        $footerSocial->icon = $request->icon;
+        $footerSocial->name = $request->name;
+        $footerSocial->url = $request->url;
+        $footerSocial->status = $request->status;
+
+        $footerSocial->save();
+
+        toastr('Updated Successfully', 'success');
+
+        return redirect()->route('root.footer-socials.index');
     }
 
     /**
@@ -79,6 +98,26 @@ class FooterSocialController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $footerSocial = FooterSocial::findOrFail($id);
+
+        $footerSocial->delete();
+
+        return response([
+            'status' => 'success',
+            'message' => 'Deleted Successfully!'
+        ]);
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $footerSocial = FooterSocial::findOrFail($request->id);
+
+        $footerSocial->status = $request->status == 'true' ? 1 : 0;
+
+        $footerSocial->save();
+
+        return response([
+            'message' => 'Status has been updated'
+        ]);
     }
 }

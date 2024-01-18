@@ -170,6 +170,8 @@ Route::put('product-slider-section-three', [HomePageSettingController::class, 'u
 
 /** FOOTER ROUTES */
 Route::resource('footer-info', FooterInfoController::class);
+Route::put('footer-socials/change-status', [FooterSocialController::class, 'changeStatus'])
+    ->name('footer-socials.change-status');
 Route::resource('footer-socials', FooterSocialController::class);
 
 /** PAYPAL ROUTES */

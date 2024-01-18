@@ -160,7 +160,7 @@
                     <li class="{{ setActive(['root.footer-info.index']) }}">
                         <a class="nav-link" href="{{ route('root.footer-info.index') }}">Footer Information</a>
                     </li>
-                    <li class="{{ setActive(['root.footer-socials.index']) }}">
+                    <li class="{{ setActive(['root.footer-socials.*']) }}">
                         <a class="nav-link" href="{{ route('root.footer-socials.index') }}">Footer Socials</a>
                     </li>
                 </ul>
